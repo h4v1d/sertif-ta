@@ -1,8 +1,15 @@
+"""
+API endpoints for PDF letter generation.
+
+NOTE: This implementation uses in-memory storage (pdf_storage dict) which is
+suitable for single-worker deployments. For multi-worker or production deployments,
+consider using Redis or a database for PDF storage.
+"""
 import uuid
 from pathlib import Path
 from typing import Dict
 
-from fastapi import APIRouter, HTTPException, Response
+from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 
 from app.models import GenerateLetterRequest, GenerateLetterResponse
@@ -19,7 +26,7 @@ pdf_generator = PDFGenerator()
 
 
 @router.get("/templates")
-async def list_templates():
+async def list_templates() -> dict[str, object]:
     """
     List available letter templates.
 
