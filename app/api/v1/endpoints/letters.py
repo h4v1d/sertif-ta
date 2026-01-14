@@ -11,7 +11,20 @@ pdf_service = PDFGenerator()
 
 @router.post("/surat-tugas", response_model=PDFResponse)
 async def generate_surat_tugas(request: SuratTugasRequest):
-    """Specific endpoint for Surat Tugas with strict schema."""
+    """
+    Generate a Surat Tugas PDF from the provided SuratTugasRequest.
+    
+    Preprocesses the request.school_info to remove redundant kelurahan/kecamatan if they appear in alamat_jalan, converts the request into a generic LetterRequest for the PDF service, and constructs a custom filename in the form "SURAT_TUGAS_{FIRST_ASSIGNEE}_{dd-mm-yyyy}.pdf". Returns a PDFResponse pointing to the generated file.
+    
+    Parameters:
+        request (SuratTugasRequest): Input data for the Surat Tugas; its fields are mapped into the PDF template and used to build the output filename.
+    
+    Returns:
+        PDFResponse: Contains `filename` (generated file name), `file_url` (download endpoint), and `file_size` (bytes).
+    
+    Raises:
+        HTTPException: Raised with status_code 500 if PDF generation or file handling fails.
+    """
     try:
         # Pre-process School Info to ensure Address fits in 1 line (2 lines total with phone)
         # Fix duplication issues like "Tunjungtirto, Tunjungtirto"
