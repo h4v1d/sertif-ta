@@ -32,8 +32,8 @@ COPY . .
 # Create output directory for PDFs
 RUN mkdir -p output
 
-# Expose port 8002
-EXPOSE 8002
+# Expose port 80
+EXPOSE 80
 
 # Run application
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8002"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
