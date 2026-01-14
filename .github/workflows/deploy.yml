@@ -54,7 +54,15 @@ jobs:
     needs: build-and-push
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Coolify Webhook
+      - name: Trigger Coolify Deployment
         run: |
-          curl --request GET '${{ secrets.COOLIFY_WEBHOOK_URL }}' \
-               --header 'Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}'
+          response=$(curl -s -w "\n%{http_code}" --request GET "${{ secrets.COOLIFY_WEBHOOK_URL }}" \
+               --header "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}")
+          http_code=$(echo "$response" | tail -n1)
+          body=$(echo "$response" | sed '$d')
+          echo "Response: $body"
+          echo "HTTP Code: $http_code"
+          if [ "$http_code" -lt 200 ] || [ "$http_code" -ge 300 ]; then
+            echo "::error::Coolify deployment failed with HTTP $http_code"
+            exit 1
+          fi
