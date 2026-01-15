@@ -82,3 +82,4 @@ class PDFResponse(BaseModel):
     filename: str
     file_url: str
     file_size: int
+    
