@@ -1,19 +1,21 @@
-from typing import List, Optional, Dict, Any, Union
+from typing import List, Optional, Dict, Any, Union, Annotated
 from pydantic import BaseModel, Field
 
 class SchoolInfo(BaseModel):
     """Information for the letterhead (Kop Surat)."""
-    nama_sekolah: str = Field(..., example="SMK NEGERI 2 SINGOSARI")
-    alamat_jalan: str = Field(..., example="Jalan Perusahaan No. 20")
+    nama_sekolah: str
+    alamat_jalan: str
     kelurahan: str | None = None
     kecamatan: str | None = None
-    kab_kota: str = Field(..., example="Kab. Malang")
-    provinsi: str = Field(..., example="Jawa Timur")
+    kab_kota: str
+    provinsi: str
     kode_pos: str | None = None
     telepon: str | None = None
     email: str | None = None
     website: str | None = None
     logo_url: str | None = None
+
+    model_config = {"json_schema_extra": {"examples": [{"nama_sekolah": "SMK NEGERI 2 SINGOSARI", "alamat_jalan": "Jalan Perusahaan No. 20", "kab_kota": "Kab. Malang", "provinsi": "Jawa Timur"}]}}
 
 class Person(BaseModel):
     """Generic person model for assignees and signatories."""
@@ -33,9 +35,9 @@ class KeyValueItem(BaseModel):
 
 class SuratTugasRequest(BaseModel):
     """Strictly typed request for Surat Tugas generation."""
-    nomor_surat: str = Field(..., example="800/123/SMK.2/2024")
-    tanggal_surat: str = Field(..., example="1 Juli 2024")
-    tempat_surat: str | None = Field(None, example="Singosari")
+    nomor_surat: str
+    tanggal_surat: str
+    tempat_surat: str | None = None
     perihal: str = "SURAT TUGAS"
 
     school_info: SchoolInfo
@@ -48,18 +50,22 @@ class SuratTugasRequest(BaseModel):
     pembuka: str | None = None
     penutup: str | None = None
 
+    model_config = {"json_schema_extra": {"examples": [{"nomor_surat": "800/123/SMK.2/2024", "tanggal_surat": "1 Juli 2024", "tempat_surat": "Singosari"}]}}
+
 class LembarPersetujuanRequest(BaseModel):
     """Request schema for Lembar Persetujuan PKL."""
     school_info: SchoolInfo
 
     # Siswa details
-    students: List[Person] = Field(..., min_items=1)
+    students: Annotated[List[Person], Field(min_length=1)]
 
     # DU/DI Info
-    nama_perusahaan: str = Field(..., example="JTV MALANG")
+    nama_perusahaan: str
 
     # Signature placeholder
-    tempat_tanggal: str | None = Field(None, example="Malang, 12 Januari 2026")
+    tempat_tanggal: str | None = None
+
+    model_config = {"json_schema_extra": {"examples": [{"nama_perusahaan": "JTV MALANG", "tempat_tanggal": "Malang, 12 Januari 2026"}]}}
 
 
 # --- Generic/Legacy Request Models ---
