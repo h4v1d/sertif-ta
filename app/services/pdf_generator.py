@@ -1,4 +1,5 @@
 import os
+import time
 from io import BytesIO
 from pathlib import Path
 from typing import Optional
@@ -6,6 +7,9 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 from weasyprint import HTML, CSS
 from weasyprint.text.fonts import FontConfiguration
 from app.schemas.letter import LetterRequest
+from app.core import get_logger
+
+logger = get_logger(__name__)
 
 # Singleton font configuration - reused across all PDF generations
 _font_config = FontConfiguration()
@@ -29,6 +33,8 @@ class PDFGenerator:
         Generates a PDF based on the letter request.
         Returns the path to the generated PDF.
         """
+        start_time = time.time()
+
         template_name = f"letters/{request.template_type}.html"
         try:
             template = self.env.get_template(template_name)
@@ -59,6 +65,10 @@ class PDFGenerator:
         # Generate PDF with cached font configuration
         html_doc = HTML(string=html_string, base_url=str(self.templates_dir))
         html_doc.write_pdf(str(output_path), font_config=_font_config)
+
+        # Log timing
+        elapsed = time.time() - start_time
+        logger.info(f"PDF generated in {elapsed:.2f}s: {filename}")
 
         return str(output_path)
 
