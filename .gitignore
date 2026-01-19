@@ -12,6 +12,7 @@ venv/
 *.log
 *.pdf
 /tmp/pdfs/
+/output
 .pytest_cache/
 .coverage
 htmlcov/
