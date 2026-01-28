@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
 from app.schemas.letter import LetterRequest, SuratTugasRequest, LembarPersetujuanRequest, PDFResponse, Person
 from app.services.pdf_generator import PDFGenerator
-from app.utils import parse_indonesian_date, preprocess_school_info
+from app.utils import parse_indonesian_date, preprocess_school_info, get_next_increment
 from app.core import get_logger
 from datetime import datetime
 
@@ -64,11 +64,12 @@ async def generate_surat_tugas(request: SuratTugasRequest):
             }
         )
 
-        # Custom Filename: SURAT_TUGAS_{NAME}_dd-mm-yyyy.pdf
+        # Custom Filename: SURAT_TUGAS_{NAME}_{dd-mm-yyyy}_{increment}.pdf
         first_assignee = request.assignees[0].nama if request.assignees else "UNKNOWN"
         first_assignee = re.sub(r'[^a-zA-Z0-9\s]', '', first_assignee).replace(" ", "_").upper()
         date_str = parse_indonesian_date(request.tanggal_surat)
-        custom_filename = f"SURAT_TUGAS_{first_assignee}_{date_str}.pdf"
+        increment = get_next_increment("SURAT_TUGAS", first_assignee, date_str)
+        custom_filename = f"SURAT_TUGAS_{first_assignee}_{date_str}_{increment}.pdf"
 
         file_path = pdf_service.generate(generic_request, custom_filename=custom_filename)
         filename = os.path.basename(file_path)
@@ -128,10 +129,11 @@ async def generate_lembar_persetujuan(request: LembarPersetujuanRequest):
             }
         )
 
-        # Custom Filename: LEMBAR_PERSETUJUAN_{COMPANY}_{DATE}.pdf
+        # Custom Filename: LEMBAR_PERSETUJUAN_{COMPANY}_{DATE}_{increment}.pdf
         company_name = re.sub(r'[^a-zA-Z0-9\s]', '', request.nama_perusahaan).replace(" ", "_").upper()
         date_str = datetime.now().strftime("%d-%m-%Y")
-        custom_filename = f"LEMBAR_PERSETUJUAN_{company_name}_{date_str}.pdf"
+        increment = get_next_increment("LEMBAR_PERSETUJUAN", company_name, date_str)
+        custom_filename = f"LEMBAR_PERSETUJUAN_{company_name}_{date_str}_{increment}.pdf"
 
         file_path = pdf_service.generate(generic_request, custom_filename=custom_filename)
         filename = os.path.basename(file_path)
