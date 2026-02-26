@@ -1,251 +1,359 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="utf-8"/>
+  <head>
+    <meta charset="utf-8" />
     <title>Lembar Persetujuan PKL</title>
     <style>
-        @page {
-            size: A4;
-            margin: 0;
-        }
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            margin: 0;
-            padding: 0;
-        }
-        .a4-paper {
-            width: 210mm;
-            min-height: 297mm;
-            margin: 0 auto;
-            padding: 15mm 20mm;
-            box-sizing: border-box;
-            background: white;
-            position: relative;
-        }
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      body {
+        font-family: "Times New Roman", Times, serif;
+        margin: 0;
+        padding: 0;
+      }
+      .a4-paper {
+        width: 210mm;
+        min-height: 297mm;
+        margin: 0 auto;
+        padding: 15mm 20mm;
+        box-sizing: border-box;
+        background: white;
+        position: relative;
+      }
 
-        /* Typography utilities */
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .text-left { text-align: left; }
-        .font-bold { font-weight: bold; }
-        .italic { font-style: italic; }
-        .uppercase { text-transform: uppercase; }
+      /* Typography utilities */
+      .text-center {
+        text-align: center;
+      }
+      .text-right {
+        text-align: right;
+      }
+      .text-left {
+        text-align: left;
+      }
+      .font-bold {
+        font-weight: bold;
+      }
+      .italic {
+        font-style: italic;
+      }
+      .uppercase {
+        text-transform: uppercase;
+      }
 
-        /* Flexbox utilities (limited support in WeasyPrint, using simple layout) */
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .items-center { align-items: center; }
-        .justify-center { justify-content: center; }
-        .justify-end { justify-content: flex-end; }
-        .justify-between { justify-content: space-between; }
-        .w-full { width: 100%; }
+      /* Flexbox utilities (limited support in WeasyPrint, using simple layout) */
+      .flex {
+        display: flex;
+      }
+      .flex-col {
+        flex-direction: column;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .justify-end {
+        justify-content: flex-end;
+      }
+      .justify-between {
+        justify-content: space-between;
+      }
+      .w-full {
+        width: 100%;
+      }
 
-        /* Margins & Padding */
-        .mt-1 { margin-top: 0.25rem; }
-        .mt-2 { margin-top: 0.5rem; }
-        .mt-4 { margin-top: 1rem; }
-        .mt-6 { margin-top: 1.5rem; }
-        .mt-8 { margin-top: 2rem; }
-        .mb-1 { margin-bottom: 0.25rem; }
-        .mb-2 { margin-bottom: 0.5rem; }
-        .mb-6 { margin-bottom: 1.5rem; }
-        .mb-20 { margin-bottom: 5rem; }
-        .p-2 { padding: 0.5rem; }
-        .py-2 { padding-top: 0.5rem; padding-bottom: 0.5rem; }
-        .px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+      /* Margins & Padding */
+      .mt-1 {
+        margin-top: 0.25rem;
+      }
+      .mt-2 {
+        margin-top: 0.5rem;
+      }
+      .mt-4 {
+        margin-top: 1rem;
+      }
+      .mt-6 {
+        margin-top: 1.5rem;
+      }
+      .mt-8 {
+        margin-top: 2rem;
+      }
+      .mb-1 {
+        margin-bottom: 0.25rem;
+      }
+      .mb-2 {
+        margin-bottom: 0.5rem;
+      }
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+      .mb-20 {
+        margin-bottom: 5rem;
+      }
+      .p-2 {
+        padding: 0.5rem;
+      }
+      .py-2 {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+      }
+      .px-2 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
 
-        /* Header specific */
-        header {
-            position: relative;
-            margin-bottom: 0.5rem;
-            width: 100%;
-        }
-        .header-content {
-            text-align: center;
-            padding-left: 5rem; /* Space for logo */
-            padding-right: 1rem;
-        }
-        .logo-container {
-            position: absolute;
-            left: 0;
-            top: -0.8rem;
-            height: 6rem;
-            width: 5rem;
-        }
-        .logo-img {
-            height: 6rem;
-            width: auto;
-            object-fit: contain;
-        }
-        .border-double-bottom {
-            border-bottom: 4px double #000;
-            margin-top: 0.25rem;
-            width: 100%;
-        }
+      /* Header specific */
+      header {
+        position: relative;
+        margin-bottom: 0.5rem;
+        width: 100%;
+      }
+      .header-content {
+        text-align: center;
+        padding-left: 5rem; /* Space for logo */
+        padding-right: 1rem;
+      }
+      .logo-container {
+        position: absolute;
+        left: 0;
+        top: -0.8rem;
+        height: 6rem;
+        width: 5rem;
+      }
+      .logo-img {
+        height: 6rem;
+        width: auto;
+        object-fit: contain;
+      }
+      .border-double-bottom {
+        border-bottom: 4px double #000;
+        margin-top: 0.25rem;
+        width: 100%;
+      }
 
-        /* Title specific */
-        .title-underline {
-            text-decoration: underline;
-            text-decoration-thickness: 1px;
-            text-underline-offset: 4px;
-        }
+      /* Title specific */
+      .title-underline {
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
+      }
 
-        /* Table specific */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            vertical-align: top;
-        }
+      /* Table specific */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+      th,
+      td {
+        vertical-align: top;
+      }
 
-        /* Signature section helpers */
-        .dotted-line-full {
-            width: 100%;
-            border-bottom: 1px dotted black;
-            height: 1px;
-            margin-top: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .date-range-container {
-            position: relative;
-            margin-top: 1rem;
-        }
-        .date-range-line {
-            width: 100%;
-            border-bottom: 1px dotted black;
-            height: 1px;
-        }
-        .date-separator {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            background: white;
-            padding-left: 0.5rem;
-        }
+      /* Signature section helpers */
+      .dotted-line-full {
+        width: 100%;
+        border-bottom: 1px dotted black;
+        height: 1px;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .date-range-container {
+        position: relative;
+        margin-top: 1rem;
+      }
+      .date-range-line {
+        width: 100%;
+        border-bottom: 1px dotted black;
+        height: 1px;
+      }
+      .date-separator {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background: white;
+        padding-left: 0.5rem;
+      }
 
-        /* List styles */
-        ol {
-            margin-top: 1rem;
-            margin-left: 0.5rem;
-            padding-left: 1rem;
-            list-style-type: none; /* Custom numbering handled in loop */
-        }
-        li {
-            margin-bottom: 0.25rem;
-        }
+      /* List styles */
+      ol {
+        margin-top: 1rem;
+        margin-left: 0.5rem;
+        padding-left: 1rem;
+        list-style-type: none; /* Custom numbering handled in loop */
+      }
+      li {
+        margin-bottom: 0.25rem;
+      }
 
-        /* Signature footer */
-        .signature-footer {
-            margin-top: 4rem;
-            width: 100%;
-            text-align: right;
-        }
-        .signature-block {
-            display: inline-block;
-            width: 300px;
-            text-align: left;
-        }
+      /* Signature footer */
+      .signature-footer {
+        margin-top: 4rem;
+        width: 100%;
+        text-align: right;
+      }
+      .signature-block {
+        display: inline-block;
+        width: 300px;
+        text-align: left;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="a4-paper">
-        <!-- HEADER (Using same component logic as before but inline for this specific template request) -->
-        <header>
-            <div class="logo-container">
-                {% if school_info.logo_url %}
-                <img src="{{ school_info.logo_url }}" alt="Logo" class="logo-img">
-                {% else %}
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png" alt="Logo Jawa Timur" class="logo-img">
-                {% endif %}
-            </div>
-            <div class="header-content">
-                <h3 class="uppercase" style="font-size: 16px; margin: 0; line-height: 1.1; letter-spacing: 0.05em;">PEMERINTAH PROVINSI JAWA TIMUR</h3>
-                <h2 class="uppercase font-bold" style="font-size: 18px; margin: 0; line-height: 1.1;">DINAS PENDIDIKAN</h2>
-                <h1 class="uppercase font-bold" style="font-size: 20px; margin: 0; line-height: 1.1; letter-spacing: 0.05em;">{{ school_info.nama_sekolah }}</h1>
-                <p style="font-size: 11px; margin: 4px 0 0 0; line-height: 1.2;">
-                    {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{ school_info.kelurahan }}{% endif %}{% if school_info.kecamatan %}, {{ school_info.kecamatan }}{% endif %}, {{ school_info.kab_kota }}, {{ school_info.provinsi }}, {{ school_info.kode_pos }}
-                </p>
-                <p style="font-size: 11px; margin: 0; line-height: 1.2;">
-                    {% if school_info.telepon %}Telepon {{ school_info.telepon }}{% endif %}
-                    {% if school_info.email %} Email: {{ school_info.email }}{% endif %}
-                    {% if school_info.website %} Website: {{ school_info.website }}{% endif %}
-                </p>
-            </div>
-            <div class="border-double-bottom"></div>
-        </header>
-
-        <!-- CONTENT -->
-        <div class="px-2">
-            <div class="text-center mb-6 mt-4">
-                <h2 class="uppercase font-bold title-underline" style="font-size: 16px;">LEMBAR PERSETUJUAN</h2>
-            </div>
-
-            <table>
-                <thead>
-                    <tr class="font-bold text-center">
-                        <th class="py-2" style="width: 40px;">NO</th>
-                        <th class="py-2" style="width: 30%;">PERIHAL</th>
-                        <th class="py-2" style="width: 40%;">DISETUJUI OLEH<br/>PIHAK DU/DI</th>
-                        <th class="py-2" style="width: 25%;">KETERANGAN</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="p-2 text-center">1.</td>
-                        <td class="p-2">
-                            <p>Permohonan pelaksanaan Pembelajaran Praktik Industri (PJBL) untuk {{ students|length }} orang siswa, atas nama:</p>
-                            <ol>
-                                {% for student in students %}
-                                <li>{{ loop.index }}. {{ student.nama }}</li>
-                                {% endfor %}
-                            </ol>
-                        </td>
-                        <td class="p-2">
-                            <div class="mb-6">
-                                <p>Nama :</p>
-                                <div class="dotted-line-full"></div>
-                            </div>
-                            <div class="mb-6">
-                                <p>Tanggal :</p>
-                                <div class="dotted-line-full"></div>
-                            </div>
-                            <div class="mb-6">
-                                <p>Paraf :</p>
-                            </div>
-                            <div class="mt-8">
-                                <p class="italic">Catatan :</p>
-                                <p>1. Mulai PKL pada tanggal :</p>
-                                <div class="date-range-container">
-                                    <div class="date-range-line"></div>
-                                    <span class="date-separator">s/d</span>
-                                </div>
-                                <div class="date-range-line" style="margin-top: 1.5rem;"></div>
-
-                                <p class="mt-4">2. Diterima Sebanyak ......... siswa.</p>
-                            </div>
-                        </td>
-                        <td class="p-2">
-                            <p>Telah disetujui Siswa Siswi {{ school_info.nama_sekolah }} untuk melaksanakan PKL di {{ nama_perusahaan }}</p>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- FOOTER SIGNATURE -->
-            <div class="signature-footer">
-                <div class="signature-block">
-                    <p class="mb-1">{{ tempat_tanggal if tempat_tanggal else "........................................., ........................ 20...." }}</p>
-                    <p class="mb-20">Bapak / Ibu Pimpinan</p>
-                    <p>( ................................................................ )</p>
-                </div>
-            </div>
+      <!-- HEADER (Using same component logic as before but inline for this specific template request) -->
+      <header>
+        <div class="logo-container">
+          {% if school_info.logo_url %}
+          <img src="{{ school_info.logo_url }}" alt="Logo" class="logo-img" />
+          {% else %}
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png"
+            alt="Logo Jawa Timur"
+            class="logo-img"
+          />
+          {% endif %}
         </div>
+        <div class="header-content">
+          <h3
+            class="uppercase"
+            style="
+              font-size: 16px;
+              margin: 0;
+              line-height: 1.1;
+              letter-spacing: 0.05em;
+            "
+          >
+            PEMERINTAH PROVINSI JAWA TIMUR
+          </h3>
+          <h2
+            class="uppercase font-bold"
+            style="font-size: 18px; margin: 0; line-height: 1.1"
+          >
+            DINAS PENDIDIKAN
+          </h2>
+          <h1
+            class="uppercase font-bold"
+            style="
+              font-size: 20px;
+              margin: 0;
+              line-height: 1.1;
+              letter-spacing: 0.05em;
+            "
+          >
+            {{ school_info.nama_sekolah }}
+          </h1>
+          <p style="font-size: 11px; margin: 4px 0 0 0; line-height: 1.2">
+            {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{
+            school_info.kelurahan }}{% endif %}{% if school_info.kecamatan %},
+            {{ school_info.kecamatan }}{% endif %}, {{ school_info.kab_kota }},
+            {{ school_info.provinsi }}, {{ school_info.kode_pos }}
+          </p>
+          <p style="font-size: 11px; margin: 0; line-height: 1.2">
+            {% if school_info.telepon %}Telepon {{ school_info.telepon }}{%
+            endif %} {% if school_info.email %} Email: {{ school_info.email }}{%
+            endif %} {% if school_info.website %} Website: {{
+            school_info.website }}{% endif %}
+          </p>
+        </div>
+        <div class="border-double-bottom"></div>
+      </header>
+
+      <!-- CONTENT -->
+      <div class="px-2">
+        <div class="text-center mb-6 mt-4">
+          <h2
+            class="uppercase font-bold title-underline"
+            style="font-size: 16px"
+          >
+            LEMBAR PERSETUJUAN
+          </h2>
+        </div>
+
+        <table>
+          <thead>
+            <tr class="font-bold text-center">
+              <th class="py-2" style="width: 40px">NO</th>
+              <th class="py-2" style="width: 30%">PERIHAL</th>
+              <th class="py-2" style="width: 40%">
+                DISETUJUI OLEH<br />PIHAK DU/DI
+              </th>
+              <th class="py-2" style="width: 25%">KETERANGAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-2 text-center">1.</td>
+              <td class="p-2">
+                <p>
+                  Permohonan pelaksanaan Pembelajaran Praktik Industri (PKL)
+                  untuk {{ students|length }} orang siswa, atas nama:
+                </p>
+                <ol>
+                  {% for student in students %}
+                  <li>{{ loop.index }}. {{ student.nama }}</li>
+                  {% endfor %}
+                </ol>
+              </td>
+              <td class="p-2">
+                <div class="mb-6">
+                  <p>Nama :</p>
+                  <div class="dotted-line-full"></div>
+                </div>
+                <div class="mb-6">
+                  <p>Tanggal :</p>
+                  <div class="dotted-line-full"></div>
+                </div>
+                <div class="mb-6">
+                  <p>Paraf :</p>
+                </div>
+                <div class="mt-8">
+                  <p class="italic">Catatan :</p>
+                  <p>1. Mulai PKL pada tanggal :</p>
+                  <div class="date-range-container">
+                    <div class="date-range-line"></div>
+                    <span class="date-separator">s/d</span>
+                  </div>
+                  <div class="date-range-line" style="margin-top: 1.5rem"></div>
+
+                  <p class="mt-4">2. Diterima Sebanyak ......... siswa.</p>
+                </div>
+              </td>
+              <td class="p-2">
+                <p>
+                  Telah disetujui Siswa Siswi {{ school_info.nama_sekolah }}
+                  untuk melaksanakan PKL di {{ nama_perusahaan }}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- FOOTER SIGNATURE -->
+        <div class="signature-footer">
+          <div class="signature-block">
+            <p class="mb-1">
+              {{ tempat_tanggal if tempat_tanggal else
+              ".........................................,
+              ........................ 20...." }}
+            </p>
+            <p class="mb-20">Bapak / Ibu Pimpinan</p>
+            <p>
+              ( ................................................................
+              )
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
