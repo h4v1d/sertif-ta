@@ -12,7 +12,7 @@ class SchoolInfo(BaseModel):
     telepon: str | None = Field(None, description="Nomor telepon", examples=["(0341) 4345127"])
     email: str | None = Field(None, description="Alamat email", examples=["smkn2singosari@yahoo.co.id"])
     website: str | None = Field(None, description="Website sekolah", examples=["www.smkn2singosari.sch.id"])
-    logo_url: str | None = Field(None, description="URL logo sekolah", examples=["https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png"])
+    logo_url: str | None = Field(None, description="URL logo sekolah", examples=["https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"])
 
     model_config = {
         "json_schema_extra": {
@@ -28,7 +28,7 @@ class SchoolInfo(BaseModel):
                     "telepon": "(0341) 4345127",
                     "email": "smkn2singosari@yahoo.co.id",
                     "website": "www.smkn2singosari.sch.id",
-                    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png"
+                    "logo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
                 }
             ]
         }
@@ -132,7 +132,7 @@ class SuratTugasRequest(BaseModel):
                         "telepon": "(0341) 4345127",
                         "email": "smkn2singosari@yahoo.co.id",
                         "website": "www.smkn2singosari.sch.id",
-                        "logo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png"
+                        "logo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
                     },
                     "penandatangan": {
                         "nama": "SUMIJAH, S.Pd., M.Si.",
@@ -188,7 +188,7 @@ class LembarPersetujuanRequest(BaseModel):
                         "provinsi": "Jawa Timur",
                         "kode_pos": "65153",
                         "telepon": "(0341) 458823",
-                        "logo_url": "https://upload.wikimedia.org/wikipedia/commons/d/d6/Logo_SMKN_2_Singosari.png"
+                        "logo_url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
                     },
                     "students": [
                         {"nama": "CHANDA ZULIA LESTARI"},
