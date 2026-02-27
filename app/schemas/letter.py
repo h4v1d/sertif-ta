@@ -77,8 +77,8 @@ class KeyValueItem(BaseModel):
                 {"label": "Keperluan", "value": "Pengantaran Siswa Praktik Kerja Lapangan (PKL)", "separator": ":"},
                 {"label": "Hari / Tanggal", "value": "Senin, 1 Juli 2024", "separator": ":"},
                 {"label": "Waktu", "value": "08.00 - Selesai", "separator": ":"},
-                {"label": "Tempat", "value": "BACAMALANG.COM", "separator": ":"},
-                {"label": "Alamat", "value": "JL. MOROJANTEK NO. 87 B, PANGENTAN, KEC. SINGOSARI, KAB. MALANG", "separator": ":"}
+                {"label": "Tempat", "value": "Institut Teknologi Nasional - Kampus 2", "separator": ":"},
+                {"label": "Alamat", "value": "JL. Raya Karanglo No.KM. 2, Tasikmadu, Kec. Lowokwaru, Kota Malang, Jawa Timur 65153", "separator": ":"}
             ]
         }
     }
@@ -158,8 +158,8 @@ class SuratTugasRequest(BaseModel):
                         {"label": "Keperluan", "value": "Pengantaran Siswa Praktik Kerja Lapangan (PKL)", "separator": ":"},
                         {"label": "Hari / Tanggal", "value": "Senin, 1 Juli 2024", "separator": ":"},
                         {"label": "Waktu", "value": "08.00 - Selesai", "separator": ":"},
-                        {"label": "Tempat", "value": "BACAMALANG.COM", "separator": ":"},
-                        {"label": "Alamat", "value": "JL. MOROJANTEK NO. 87 B, PANGENTAN, KEC. SINGOSARI, KAB. MALANG", "separator": ":"}
+                        {"label": "Tempat", "value": "Institut Teknologi Nasional - Kampus 2", "separator": ":"},
+                        {"label": "Alamat", "value": "JL. Raya Karanglo No.KM. 2, Tasikmadu, Kec. Lowokwaru, Kota Malang, Jawa Timur 65153", "separator": ":"}
                     ],
                     "pembuka": "Kepala SMK Negeri 2 Singosari Dinas Pendidikan Kabupaten Malang menugaskan kepada :",
                     "penutup": "Demikian surat tugas ini dibuat untuk dilaksanakan dengan sebaik-baiknya dan melaporkan hasilnya kepada kepala sekolah."
