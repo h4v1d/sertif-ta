@@ -194,7 +194,7 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
     try:
         logger.info(f"Generating Sertifikat PKL ({jurusan}) for {request.siswa.nama}")
 
-        allowed_jurusan = ["dkv"]
+        allowed_jurusan = ["dkv", "av", "bc", "mt", "rpl", "tkj", "an",'ei']
         if jurusan.lower() not in allowed_jurusan:
             raise HTTPException(status_code=400, detail=f"Jurusan {jurusan} is not supported. Supported: {allowed_jurusan}")
 

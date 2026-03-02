@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sertifikat PKL</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Great+Vibes&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4 landscape;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            display: block;
+            /* Removed flex setup for page breaking */
+        }
+
+        .page {
+            position: relative;
+            width: 297mm;
+            height: 210mm;
+            overflow: hidden;
+            page-break-after: always;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .page:last-child {
+            page-break-after: auto;
+        }
+
+        .bg-depan {
+            background-image: url('assets/tkj/depan_tkj.png');
+        }
+
+        .bg-belakang {
+            background-image: url('assets/tkj/belakang_tkj.png');
+        }
+
+        /* Set absolute positioning to follow mm sizing for exact A4 matching, or keep percentages as provided */
+        .certificate-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 13px;
+        }
+
+        .text {
+            position: absolute;
+            color: #000;
+        }
+
+        .text-blue {
+            color: #002D58;
+        }
+
+        .font-normal {
+            font-weight: 400;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-black {
+            font-weight: 900;
+        }
+
+        /* ----------------------------------
+       DEPAN.HTML STYLES
+       ---------------------------------- */
+
+        /* NOMOR SERTIFIKAT */
+        .nomor {
+            top: 30%;
+            left: 54%;
+            transform: translateX(-50%);
+            font-size: 1.3em;
+            letter-spacing: 0.05em;
+        }
+
+        /* NAMA SISWA */
+        .nama-siswa-depan {
+            top: 42%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 5em;
+            font-family: 'Great Vibes', cursive;
+            color: #fbcd05;
+            white-space: nowrap;
+        }
+
+        /* NISN */
+        .nisn-value {
+            top: 50.5%;
+            left: 51.5%;
+            transform: translateX(-50%);
+            font-size: 1.5em;
+        }
+
+        /* NAMA INDUSTRI */
+        .nama-industri {
+            top: 86.5%;
+            left: 32.5%;
+            transform: translateX(-50%);
+            font-size: 1.3em;
+            width: 40%;
+            text-align: center;
+        }
+
+        /* HASIL PKL */
+        .hasil-pkl {
+            top: 66%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.3em;
+            text-align: center;
+            line-height: 1.5;
+            width: 900px;
+        }
+
+        /* SIGNATURE DATE */
+        .tanggal-value {
+            top: 76.3%;
+            left: 69%;
+            font-size: 1.2em;
+        }
+
+
+        /* ----------------------------------
+       BELAKANG.HTML STYLES
+       ---------------------------------- */
+
+        .nama-siswa-belakang {
+            top: 17%;
+            left: 47%;
+            font-size: 1.5em;
+        }
+
+        /* Aspek Penilaian Texts */
+        .aspek {
+            left: 15%;
+            font-size: 1.15em;
+            width: 65%;
+            line-height: 1.3;
+        }
+
+        .aspek-1 {
+            top: 33.5%;
+        }
+
+        .aspek-2 {
+            top: 39.5%;
+        }
+
+        .aspek-3 {
+            top: 48.5%;
+        }
+
+        .aspek-4 {
+            top: 56.5%;
+        }
+
+        /* Nilai Values */
+        .nilai {
+            left: 88%;
+            transform: translateX(-50%);
+            font-size: 1.4em;
+            text-align: center;
+        }
+
+        .nilai-1 {
+            top: 33.5%;
+        }
+
+        .nilai-2 {
+            top: 41.5%;
+        }
+
+        .nilai-3 {
+            top: 49.5%;
+        }
+
+        .nilai-4 {
+            top: 56.5%;
+        }
+
+        .nilai-total {
+            top: 61.5%;
+        }
+
+        .nilai-akhir {
+            top: 67%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- PAGE 1: DEPAN -->
+    <div class="page bg-depan">
+        <div class="certificate-container">
+            <div class="text nomor font-normal">{{ nomor_sertifikat }}</div>
+            <div class="text nama-siswa-depan font-bold">{{ siswa.nama }}</div>
+            <div class="text nisn-value font-bold">{{ siswa.nisn }}</div>
+
+            <div class="text hasil-pkl font-normal">
+                Telah melaksanakan Praktik Kerja Lapangan (PKL) di <strong>{{ nama_industri }}</strong> <br>
+                Pada tanggal {{ tanggal_mulai }} s/d {{ tanggal_selesai }}, dengan hasil : <span class="font-bold">{{
+                    hasil_pkl }}</span>
+            </div>
+
+            <div class="text tanggal-value font-normal">{{ tanggal_terbit }}</div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: BELAKANG -->
+    <div class="page bg-belakang font-belakang">
+        <div class="certificate-container">
+            <!-- Header Info -->
+            <div class="text nama-siswa-belakang font-normal">{{ siswa.nama }}</div>
+
+            <!-- Aspek Penilaian -->
+            <div class="text aspek aspek-1 font-normal">{{ nilai.desc_1 }}</div>
+            <div class="text aspek aspek-2 font-normal">{{ nilai.desc_2 }}</div>
+            <div class="text aspek aspek-3 font-normal">{{ nilai.desc_3 }}</div>
+            <div class="text aspek aspek-4 font-normal">{{ nilai.desc_4 }}</div>
+
+            <!-- Nilai Angka -->
+            <div class="text nilai nilai-1 font-normal">{{ nilai.aspek_1 }}</div>
+            <div class="text nilai nilai-2 font-normal">{{ nilai.aspek_2 }}</div>
+            <div class="text nilai nilai-3 font-normal">{{ nilai.aspek_3 }}</div>
+            <div class="text nilai nilai-4 font-normal">{{ nilai.aspek_4 }}</div>
+            <div class="text nilai nilai-total font-normal">{{ total_nilai }}</div>
+            <div class="text nilai nilai-akhir font-bold">{{ rata_rata }}</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
