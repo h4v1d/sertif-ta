@@ -239,4 +239,27 @@ class PDFResponse(BaseModel):
             ]
         }
     }
-    
+
+class SiswaSertifikat(BaseModel):
+    nama: str = Field(..., description="Nama lengkap siswa", examples=["Juliana Silva"])
+    nisn: str = Field(..., description="Nomor Induk Siswa Nasional (NISN)", examples=["0123456789"])
+
+class NilaiSertifikat(BaseModel):
+    aspek_1: float = Field(..., description="Nilai Aspek 1", examples=[90.0])
+    desc_1: str = Field("MENERAPKAN SOFT SKILL YANG DIBUTUHKAN DI DUNIA KERJA (TEMPAT PKL).", description="Deskripsi Aspek 1")
+    aspek_2: float = Field(..., description="Nilai Aspek 2", examples=[85.0])
+    desc_2: str = Field("MENERAPKAN NORMA, PROSEDUR OPERASIONAL STANDAR (POS), SERTA KESEHATAN, KESELAMATAN KERJA, DAN LINGKUNGAN HIDUP (K3LH) YANG ADA DI DUNIA KERJA (TEMPAT PKL).", description="Deskripsi Aspek 2")
+    aspek_3: float = Field(..., description="Nilai Aspek 3", examples=[88.0])
+    desc_3: str = Field("MENERAPKAN KOMPETENSI TEKNIS YANG SUDAH DIPELAJARI DI SEKOLAH DAN/ATAU BARU DIPELAJARI DI DUNIA KERJA (TEMPAT PKL).", description="Deskripsi Aspek 3")
+    aspek_4: float = Field(..., description="Nilai Aspek 4", examples=[92.0])
+    desc_4: str = Field("MEMAHAMI ALUR BISNIS DUNIA KERJA TEMPAT PKL DAN WAWASAN WIRAUSAHA.", description="Deskripsi Aspek 4")
+
+class SertifikatRequest(BaseModel):
+    nomor_sertifikat: str = Field(..., description="Nomor surat/sertifikat", examples=["420/1013/101.6.9.19/2026"])
+    siswa: SiswaSertifikat = Field(..., description="Data Siswa")
+    nama_industri: str = Field(..., description="Nama perusahaan/DU/DI tempat PKL", examples=["PT NAMA STUDIOS INDONESIA"])
+    tanggal_mulai: str = Field(..., description="Tanggal mulai PKL (e.g., '14 Juli 2026')", examples=["14 Juli 2026"])
+    tanggal_selesai: str = Field(..., description="Tanggal selesai PKL (e.g., '31 Desember 2026')", examples=["31 Desember 2026"])
+    hasil_pkl: str = Field(..., description="Hasil evaluasi ('Amat Baik' / 'Baik' / 'Kurang')", examples=["Amat Baik"])
+    tanggal_terbit: str = Field(..., description="Tanggal sertifikat diterbitkan (e.g., '31 Desember 2026')", examples=["31 Desember 2026"])
+    nilai: NilaiSertifikat = Field(..., description="Data nilai untuk halaman belakang")

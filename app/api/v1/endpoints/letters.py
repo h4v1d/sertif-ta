@@ -2,7 +2,7 @@ import os
 import re
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
-from app.schemas.letter import LetterRequest, SuratTugasRequest, LembarPersetujuanRequest, PDFResponse, Person
+from app.schemas.letter import LetterRequest, SuratTugasRequest, LembarPersetujuanRequest, PDFResponse, Person, SertifikatRequest
 from app.services.pdf_generator import PDFGenerator
 from app.utils import parse_indonesian_date, preprocess_school_info, get_next_increment
 from app.core import get_logger
@@ -171,3 +171,101 @@ async def download_letter(filename: str):
         raise HTTPException(status_code=404, detail="File not found")
 
     return FileResponse(file_path, media_type="application/pdf", filename=filename)
+
+@router.post("/sertifikat/{jurusan}", response_model=PDFResponse, summary="Generate Sertifikat PKL")
+async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
+    """
+    Generate Sertifikat PKL (Internship Certificate) PDF document.
+
+    Creates a 2-page certificate:
+    - Page 1: Front side with student info, industry, and PKL result
+    - Page 2: Back side with detailed scores
+
+    **Request Body:**
+    - `nomor_sertifikat`: Certificate number
+    - `siswa`: Student details (nama, nisn)
+    - `nama_industri`: Industry name
+    - `tanggal_mulai`: Start date of PKL
+    - `tanggal_selesai`: End date of PKL
+    - `hasil_pkl`: High-level result (e.g. Amat Baik)
+    - `tanggal_terbit`: Date of issue
+    - `nilai`: 4 specific score aspects
+    """
+    try:
+        logger.info(f"Generating Sertifikat PKL ({jurusan}) for {request.siswa.nama}")
+
+        allowed_jurusan = ["dkv", "av", "bc", "mt", "rpl", "tkj", "an",'ei']
+        if jurusan.lower() not in allowed_jurusan:
+            raise HTTPException(status_code=400, detail=f"Jurusan {jurusan} is not supported. Supported: {allowed_jurusan}")
+
+        total = sum([
+            request.nilai.aspek_1,
+            request.nilai.aspek_2,
+            request.nilai.aspek_3,
+            request.nilai.aspek_4
+        ])
+        rata_rata = round(total / 4, 2)
+
+        content = {
+            "nomor_sertifikat": request.nomor_sertifikat,
+            "siswa": {
+                "nama": request.siswa.nama,
+                "nisn": request.siswa.nisn
+            },
+            "nama_industri": request.nama_industri,
+            "tanggal_mulai": request.tanggal_mulai,
+            "tanggal_selesai": request.tanggal_selesai,
+            "hasil_pkl": request.hasil_pkl,
+            "tanggal_terbit": request.tanggal_terbit,
+            "nilai": {
+                "aspek_1": request.nilai.aspek_1,
+                "desc_1": request.nilai.desc_1,
+                "aspek_2": request.nilai.aspek_2,
+                "desc_2": request.nilai.desc_2,
+                "aspek_3": request.nilai.aspek_3,
+                "desc_3": request.nilai.desc_3,
+                "aspek_4": request.nilai.aspek_4,
+                "desc_4": request.nilai.desc_4
+            },
+            "total_nilai": total,
+            "rata_rata": rata_rata
+        }
+
+        mock_school = {
+            "nama_sekolah": "SMK",
+            "alamat_jalan": "-"
+        }
+        mock_person = {
+            "nama": "Placeholder"
+        }
+        
+        generic_request = LetterRequest(
+            template_type=f"sertif/{jurusan}/kombinasi",
+            nomor_surat=request.nomor_sertifikat,
+            tanggal_surat=request.tanggal_terbit,
+            school_info=mock_school,
+            penandatangan=mock_person,
+            content=content
+        )
+
+        student_name = re.sub(r'[^a-zA-Z0-9\s]', '', request.siswa.nama).replace(" ", "_").upper()
+        date_str = datetime.now().strftime("%d-%m-%Y")
+        increment = get_next_increment("SERTIFIKAT", student_name, date_str)
+        custom_filename = f"SERTIFIKAT_{jurusan.upper()}_{student_name}_{date_str}_{increment}.pdf"
+
+        file_path = pdf_service.generate(generic_request, custom_filename=custom_filename)
+        filename = os.path.basename(file_path)
+        file_size = os.path.getsize(file_path)
+
+        logger.info(f"Successfully generated Sertifikat PDF: {filename} ({file_size} bytes)")
+
+        return PDFResponse(
+            filename=filename,
+            file_url=f"/api/v1/letters/download/{filename}",
+            file_size=file_size
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to generate Sertifikat PDF: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
