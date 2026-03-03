@@ -404,14 +404,80 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="page">
+        <!-- Header -->
+        <table class="header-table">
+            <tr>
+                <td class="header-logo-td">
+                    {% if school_info.logo_url %}
+                    <img src="{{ school_info.logo_url }}" alt="Logo" />
+                    {% else %}
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
+                        alt="Logo Jawa Timur" />
+                    {% endif %}
+                </td>
+                <td class="header-text-td">
+                    <div class="header-text">
+                        <div class="prov">PEMERINTAH PROVINSI {% if school_info.provinsi %}{{ school_info.provinsi|upper
+                            }}{%
+                            else %}JAWA TIMUR{% endif %}</div>
+                        <div class="dinas">DINAS PENDIDIKAN</div>
+                        <div class="school-name">{{ school_info.nama_sekolah }}</div>
+                        <div class="address">
+                            {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{ school_info.kelurahan }}{%
+                            endif
+                            %}{% if school_info.kecamatan %}, {{ school_info.kecamatan }}{% endif %}{% if
+                            school_info.kab_kota
+                            %}, {{ school_info.kab_kota }}{% endif %}{% if school_info.provinsi %}, {{
+                            school_info.provinsi }}{%
+                            endif %}{% if school_info.kode_pos %}, {{ school_info.kode_pos }}{% endif %}
+                        </div>
+                        <div class="address">Telepon {% if school_info.telepon %}{{ school_info.telepon }}{% else
+                            %}(0341)
+                            4345127{% endif %}</div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Kehadiran Table -->
+        <br />
+        <table class="kehadiran-table">
+            <thead>
+                <tr>
+                    <th colspan="3">Kehadiran</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="k-label">Sakit</td>
+                    <td class="k-colon">:</td>
+                    <td class="k-val">{{ content.sakit }} Hari</td>
+                </tr>
+                <tr>
+                    <td class="k-label">Izin</td>
+                    <td class="k-colon">:</td>
+                    <td class="k-val">{{ content.izin }} Hari</td>
+                </tr>
+                <tr>
+                    <td class="k-label">Tanpa Keterangan</td>
+                    <td class="k-colon">:</td>
+                    <td class="k-val">{{ content.alpa }} Hari</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Signature -->
         <table class="signature-table">
             <tr>
                 <td class="sig-left" style="width: 50%;">
+                    <span class="sig-location">&nbsp;</span><br />
                     <span class="sig-title">Guru Mapel PKL,</span>
                     <span class="sig-dots">………………………</span>
                 </td>
                 <td class="sig-right" style="width: 50%;">
-                    <span class="sig-location">Singosari,</span><br />
+                    <span class="sig-location">{{ content.tempat_tanggal }}</span><br />
                     <span class="sig-title">Instruktur Dunia Kerja,</span>
                     <span class="sig-dots">………………………………</span>
                 </td>
