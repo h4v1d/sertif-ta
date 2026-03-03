@@ -292,3 +292,4 @@ class PenilaianRequest(BaseModel):
     sakit: int = Field(0, description="Jumlah hari sakit", examples=[2])
     izin: int = Field(0, description="Jumlah hari izin", examples=[1])
     alpa: int = Field(0, description="Jumlah hari tanpa keterangan (alpa)", examples=[0])
+    tempat_tanggal: str = Field("Singosari, ...........................................", description="Tempat dan tanggal tanda tangan instruktur", examples=["Singosari, 31 Desember 2024"])

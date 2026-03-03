@@ -319,7 +319,8 @@ async def generate_penilaian(request: PenilaianRequest):
             "rata_rata": rata_rata,
             "sakit": request.sakit,
             "izin": request.izin,
-            "alpa": request.alpa
+            "alpa": request.alpa,
+            "tempat_tanggal": request.tempat_tanggal
         }
 
         mock_person = {"nama": "Placeholder"}
