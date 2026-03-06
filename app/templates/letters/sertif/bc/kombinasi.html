@@ -1,269 +1,311 @@
 <!doctype html>
 <html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sertifikat PKL</title>
-    <!-- Montserrat Font Local -->
-    <style>
-      @font-face {
-        font-family: "Montserrat";
-        src: url("../../../font/Montserrat-Black.ttf") format("truetype");
-        font-weight: 900;
-        font-style: normal;
-      }
 
-      @font-face {
-        font-family: "Montserrat";
-        src: url("../../../font/Montserrat-Bold.ttf") format("truetype");
-        font-weight: 700;
-        font-style: normal;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sertifikat PKL</title>
+  <!-- Montserrat Font Local -->
+  <style>
+    @font-face {
+      font-family: "Montserrat";
+      src: url("../../../font/Montserrat-Black.ttf") format("truetype");
+      font-weight: 900;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: "Montserrat";
-        src: url("../../../font/Montserrat-SemiBold.ttf") format("truetype");
-        font-weight: 600;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: "Montserrat";
+      src: url("../../../font/Montserrat-Bold.ttf") format("truetype");
+      font-weight: 700;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: "Montserrat";
-        src: url("../../../font/Montserrat-Medium.ttf") format("truetype");
-        font-weight: 500;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: "Montserrat";
+      src: url("../../../font/Montserrat-SemiBold.ttf") format("truetype");
+      font-weight: 600;
+      font-style: normal;
+    }
 
-      @font-face {
-        font-family: "Montserrat";
-        src: url("../../../font/Montserrat-Regular.ttf") format("truetype");
-        font-weight: 400;
-        font-style: normal;
-      }
+    @font-face {
+      font-family: "Montserrat";
+      src: url("../../../font/Montserrat-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
+    }
 
-      @page {
-        size: A4 landscape;
-        margin: 0;
-      }
+    @font-face {
+      font-family: "Montserrat";
+      src: url("../../../font/Montserrat-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Montserrat", sans-serif;
-      }
+    @page {
+      size: A4 landscape;
+      margin: 0;
+    }
 
-      body {
-        background-color: #fff;
-        display: block;
-      }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
 
-      .page {
-        position: relative;
-        width: 297mm;
-        height: 210mm;
-        overflow: hidden;
-        page-break-after: always;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-      }
+    body {
+      background-color: #fff;
+      display: block;
+    }
 
-      .page:last-child {
-        page-break-after: auto;
-      }
+    .page {
+      position: relative;
+      width: 297mm;
+      height: 210mm;
+      overflow: hidden;
+      page-break-after: always;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-      .bg-depan {
-        background-image: url("assets/bc/depan_bc.png");
-      }
+    .page:last-child {
+      page-break-after: auto;
+    }
 
-      .bg-belakang {
-        background-image: url("assets/bc/belakang_bc.png");
-      }
+    .bg-depan {
+      background-image: url("assets/bc/depan_bc.png");
+    }
 
-      .certificate-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        font-size: 13px;
-      }
+    .bg-belakang {
+      background-image: url("assets/bc/belakang_bc.png");
+    }
 
-      .text {
-        position: absolute;
-        color: #000;
-      }
+    .certificate-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      font-size: 13px;
+    }
 
-      .text-blue {
-        color: #002d58;
-      }
+    .text {
+      position: absolute;
+      color: #000;
+    }
 
-      .font-normal {
-        font-weight: 400;
-      }
-      .font-medium {
-        font-weight: 500;
-      }
-      .font-semibold {
-        font-weight: 600;
-      }
-      .font-bold {
-        font-weight: 700;
-      }
-      .font-black {
-        font-weight: 900;
-      }
+    .text-blue {
+      color: #002d58;
+    }
 
-      /* NOMOR SERTIFIKAT */
-      .nomor {
-        top: 29.8%;
-        left: 54%;
-        transform: translateX(-50%);
-        font-size: 1.3em;
-        letter-spacing: 0.05em;
-      }
+    .font-normal {
+      font-weight: 400;
+    }
 
-      /* NAMA SISWA - Montserrat Black */
-      .nama-siswa-depan {
-        top: 42%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 3.5em;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 900;
-        color: #f81d4f;
-        white-space: nowrap;
-        letter-spacing: 0.02em;
-      }
+    .font-medium {
+      font-weight: 500;
+    }
 
-      /* NISN */
-      .nisn-value {
-        top: 50.2%;
-        left: 52.2%;
-        transform: translateX(-50%);
-        font-size: 1.5em;
-      }
+    .font-semibold {
+      font-weight: 600;
+    }
 
-      /* NAMA INDUSTRI */
-      .nama-industri {
-        top: 86.5%;
-        left: 32.5%;
-        transform: translateX(-50%);
-        font-size: 1.3em;
-        width: 40%;
-        text-align: center;
-      }
+    .font-bold {
+      font-weight: 700;
+    }
 
-      /* HASIL PKL */
-      .hasil-pkl {
-        top: 66%;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 1.3em;
-        text-align: center;
-        line-height: 1.5;
-        width: 900px;
-      }
+    .font-black {
+      font-weight: 900;
+    }
 
-      /* SIGNATURE DATE */
-      .tanggal-value {
-        top: 76.3%;
-        left: 69%;
-        font-size: 1.2em;
-      }
+    /* NOMOR SERTIFIKAT */
+    .nomor {
+      top: 29.8%;
+      left: 54%;
+      transform: translateX(-50%);
+      font-size: 1.3em;
+      letter-spacing: 0.05em;
+    }
 
-      /* BELAKANG */
-      .nama-siswa-belakang {
-        top: 17%;
-        left: 47%;
-        font-size: 1.5em;
-      }
+    /* NAMA SISWA - Montserrat Black */
+    .nama-siswa-depan {
+      top: 42%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 3.5em;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 900;
+      color: #f81d4f;
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
 
-      .aspek {
-        left: 15%;
-        font-size: 1.15em;
-        width: 65%;
-        line-height: 1.3;
-      }
+    /* NISN */
+    .nisn-value {
+      top: 50.2%;
+      left: 52.2%;
+      transform: translateX(-50%);
+      font-size: 1.5em;
+    }
 
-      .aspek-1 {
-        top: 33.5%;
-      }
-      .aspek-2 {
-        top: 39.5%;
-      }
-      .aspek-3 {
-        top: 48.5%;
-      }
-      .aspek-4 {
-        top: 56.5%;
-      }
+    /* NAMA INDUSTRI */
+    .nama-industri {
+      top: 86.5%;
+      left: 32.5%;
+      transform: translateX(-50%);
+      font-size: 1.3em;
+      width: 40%;
+      text-align: center;
+    }
 
-      .nilai {
-        left: 88%;
-        transform: translateX(-50%);
-        font-size: 1.4em;
-        text-align: center;
-      }
+    /* HASIL PKL */
+    .hasil-pkl {
+      top: 66%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.3em;
+      text-align: center;
+      line-height: 1.5;
+      width: 900px;
+    }
 
-      .nilai-1 {
-        top: 33.5%;
-      }
-      .nilai-2 {
-        top: 41.5%;
-      }
-      .nilai-3 {
-        top: 49.5%;
-      }
-      .nilai-4 {
-        top: 56.5%;
-      }
-      .nilai-total {
-        top: 61.5%;
-      }
-      .nilai-akhir {
-        top: 67%;
-      }
-    </style>
-  </head>
+    /* SIGNATURE DATE */
+    .tanggal-value {
+      top: 76.3%;
+      left: 69%;
+      font-size: 1.2em;
+    }
 
-  <body>
-    <!-- PAGE 1: DEPAN -->
-    <div class="page bg-depan">
-      <div class="certificate-container">
-        <div class="text nomor font-normal">{{ nomor_sertifikat }}</div>
-        <div class="text nama-siswa-depan font-black">{{ siswa.nama }}</div>
-        <div class="text nisn-value font-bold">{{ siswa.nisn }}</div>
+    /* BELAKANG */
+    .nama-siswa-belakang {
+      top: 17%;
+      left: 47%;
+      font-size: 1.5em;
+    }
 
-        <div class="text hasil-pkl font-normal">
-          Telah melaksanakan Praktik Kerja Lapangan (PKL) di
-          <strong>{{ nama_industri }}</strong> <br />
-          Pada tanggal {{ tanggal_mulai }} s/d {{ tanggal_selesai }}, dengan
-          hasil : <span class="font-bold">{{ hasil_pkl }}</span>
-        </div>
+    .aspek {
+      left: 15%;
+      font-size: 1.15em;
+      width: 65%;
+      line-height: 1.3;
+    }
 
-        <div class="text tanggal-value font-normal">{{ tanggal_terbit }}</div>
+    .aspek-1 {
+      top: 33.5%;
+    }
+
+    .aspek-2 {
+      top: 39.5%;
+    }
+
+    .aspek-3 {
+      top: 48.5%;
+    }
+
+    .aspek-4 {
+      top: 56.5%;
+    }
+
+    .nilai {
+      left: 88%;
+      transform: translateX(-50%);
+      font-size: 1.4em;
+      text-align: center;
+    }
+
+    .nilai-1 {
+      top: 33.5%;
+    }
+
+    .nilai-2 {
+      top: 41.5%;
+    }
+
+    .nilai-3 {
+      top: 49.5%;
+    }
+
+    .nilai-4 {
+      top: 56.5%;
+    }
+
+    .nilai-total {
+      top: 61.5%;
+    }
+
+    .nilai-akhir {
+      top: 67%;
+    }
+
+    .nama-pimpinan-depan {
+      top: 92.5%;
+      left: 21.3%;
+      font-size: 1.2em;
+    }
+
+    .nip-pimpinan-depan {
+      top: 95.5%;
+      left: 21.5%;
+      font-size: 1.2em;
+    }
+
+    .nama-pimpinan-belakang {
+      top: 87.5%;
+      right: 28.4%;
+      font-size: 1.2em;
+    }
+
+    .nip-pimpinan-belakang {
+      top: 90%;
+      right: 17.5%;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- PAGE 1: DEPAN -->
+  <div class="page bg-depan">
+    <div class="certificate-container">
+      <div class="text nomor font-normal">{{ nomor_sertifikat }}</div>
+      <div class="text nama-siswa-depan font-black">{{ siswa.nama }}</div>
+      <div class="text nisn-value font-bold">{{ siswa.nisn }}</div>
+
+      <div class="text hasil-pkl font-normal">
+        Telah melaksanakan Praktik Kerja Lapangan (PKL) di
+        <strong>{{ nama_industri }}</strong> <br />
+        Pada tanggal {{ tanggal_mulai }} s/d {{ tanggal_selesai }}, dengan
+        hasil : <span class="font-bold">{{ hasil_pkl }}</span>
       </div>
+
+      <div class="text tanggal-value font-normal">{{ tanggal_terbit }}</div>
+      <div class="text nama-pimpinan-depan font-normal">{{ nama_pimpinan }}</div>
+      <div class="text nip-pimpinan-depan font-normal">NIP. {{ nip_pimpinan }}</div>
     </div>
+  </div>
 
-    <!-- PAGE 2: BELAKANG -->
-    <div class="page bg-belakang font-belakang">
-      <div class="certificate-container">
-        <div class="text nama-siswa-belakang font-normal">{{ siswa.nama }}</div>
+  <!-- PAGE 2: BELAKANG -->
+  <div class="page bg-belakang font-belakang">
+    <div class="certificate-container">
+      <div class="text nama-siswa-belakang font-normal">{{ siswa.nama }}</div>
 
-        <div class="text aspek aspek-1 font-normal">{{ nilai.desc_1 }}</div>
-        <div class="text aspek aspek-2 font-normal">{{ nilai.desc_2 }}</div>
-        <div class="text aspek aspek-3 font-normal">{{ nilai.desc_3 }}</div>
-        <div class="text aspek aspek-4 font-normal">{{ nilai.desc_4 }}</div>
+      <div class="text aspek aspek-1 font-normal">{{ nilai.desc_1 }}</div>
+      <div class="text aspek aspek-2 font-normal">{{ nilai.desc_2 }}</div>
+      <div class="text aspek aspek-3 font-normal">{{ nilai.desc_3 }}</div>
+      <div class="text aspek aspek-4 font-normal">{{ nilai.desc_4 }}</div>
 
-        <div class="text nilai nilai-1 font-normal">{{ nilai.aspek_1 }}</div>
-        <div class="text nilai nilai-2 font-normal">{{ nilai.aspek_2 }}</div>
-        <div class="text nilai nilai-3 font-normal">{{ nilai.aspek_3 }}</div>
-        <div class="text nilai nilai-4 font-normal">{{ nilai.aspek_4 }}</div>
-        <div class="text nilai nilai-total font-normal">{{ total_nilai }}</div>
-        <div class="text nilai nilai-akhir font-bold">{{ rata_rata }}</div>
-      </div>
+      <div class="text nilai nilai-1 font-normal">{{ nilai.aspek_1 }}</div>
+      <div class="text nilai nilai-2 font-normal">{{ nilai.aspek_2 }}</div>
+      <div class="text nilai nilai-3 font-normal">{{ nilai.aspek_3 }}</div>
+      <div class="text nilai nilai-4 font-normal">{{ nilai.aspek_4 }}</div>
+      <div class="text nilai nilai-total font-normal">{{ total_nilai }}</div>
+      <div class="text nilai nilai-akhir font-bold">{{ rata_rata }}</div>
+      <div class="text nama-pimpinan-belakang font-normal">{{ nama_pimpinan }}</div>
+      <div class="text nip-pimpinan-belakang font-normal">NIP. {{ nip_pimpinan }}</div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

@@ -100,11 +100,25 @@
             color: #002D58;
         }
 
-        .font-normal { font-weight: 400; }
-        .font-medium { font-weight: 500; }
-        .font-semibold { font-weight: 600; }
-        .font-bold { font-weight: 700; }
-        .font-black { font-weight: 900; }
+        .font-normal {
+            font-weight: 400;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .font-black {
+            font-weight: 900;
+        }
 
         /* NOMOR SERTIFIKAT */
         .nomor {
@@ -178,10 +192,21 @@
             line-height: 1.3;
         }
 
-        .aspek-1 { top: 33.5%; }
-        .aspek-2 { top: 39.5%; }
-        .aspek-3 { top: 48.5%; }
-        .aspek-4 { top: 56.5%; }
+        .aspek-1 {
+            top: 33.5%;
+        }
+
+        .aspek-2 {
+            top: 39.5%;
+        }
+
+        .aspek-3 {
+            top: 48.5%;
+        }
+
+        .aspek-4 {
+            top: 56.5%;
+        }
 
         .nilai {
             left: 88%;
@@ -190,12 +215,53 @@
             text-align: center;
         }
 
-        .nilai-1 { top: 33.5%; }
-        .nilai-2 { top: 41.5%; }
-        .nilai-3 { top: 49.5%; }
-        .nilai-4 { top: 56.5%; }
-        .nilai-total { top: 61.5%; }
-        .nilai-akhir { top: 67%; }
+        .nilai-1 {
+            top: 33.5%;
+        }
+
+        .nilai-2 {
+            top: 41.5%;
+        }
+
+        .nilai-3 {
+            top: 49.5%;
+        }
+
+        .nilai-4 {
+            top: 56.5%;
+        }
+
+        .nilai-total {
+            top: 61.5%;
+        }
+
+        .nilai-akhir {
+            top: 67%;
+        }
+
+        .nama-pimpinan-depan {
+            top: 92.5%;
+            left: 21.3%;
+            font-size: 1.2em;
+        }
+
+        .nip-pimpinan-depan {
+            top: 95.5%;
+            left: 21.5%;
+            font-size: 1.2em;
+        }
+
+        .nama-pimpinan-belakang {
+            top: 87.5%;
+            right: 28.4%;
+            font-size: 1.2em;
+        }
+
+        .nip-pimpinan-belakang {
+            top: 90%;
+            right: 17.5%;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 
@@ -209,10 +275,13 @@
 
             <div class="text hasil-pkl font-normal">
                 Telah melaksanakan Praktik Kerja Lapangan (PKL) di <strong>{{ nama_industri }}</strong> <br>
-                Pada tanggal {{ tanggal_mulai }} s/d {{ tanggal_selesai }}, dengan hasil : <span class="font-bold">{{ hasil_pkl }}</span>
+                Pada tanggal {{ tanggal_mulai }} s/d {{ tanggal_selesai }}, dengan hasil : <span class="font-bold">{{
+                    hasil_pkl }}</span>
             </div>
 
             <div class="text tanggal-value font-normal">{{ tanggal_terbit }}</div>
+            <div class="text nama-pimpinan-depan font-normal">{{ nama_pimpinan }}</div>
+            <div class="text nip-pimpinan-depan font-normal">NIP. {{ nip_pimpinan }}</div>
         </div>
     </div>
 
@@ -232,6 +301,8 @@
             <div class="text nilai nilai-4 font-normal">{{ nilai.aspek_4 }}</div>
             <div class="text nilai nilai-total font-normal">{{ total_nilai }}</div>
             <div class="text nilai nilai-akhir font-bold">{{ rata_rata }}</div>
+            <div class="text nama-pimpinan-belakang font-normal">{{ nama_pimpinan }}</div>
+            <div class="text nip-pimpinan-belakang font-normal">NIP. {{ nip_pimpinan }}</div>
         </div>
     </div>
 

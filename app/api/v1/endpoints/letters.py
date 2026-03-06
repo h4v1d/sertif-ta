@@ -190,6 +190,8 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
     - `hasil_pkl`: High-level result (e.g. Amat Baik)
     - `tanggal_terbit`: Date of issue
     - `nilai`: 4 specific score aspects
+    - `nama_pimpinan`: Name of the industry leader
+    - `nip_pimpinan`: NIP of the industry leader
     """
     try:
         logger.info(f"Generating Sertifikat PKL ({jurusan}) for {request.siswa.nama}")
@@ -227,6 +229,8 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
                 "aspek_4": request.nilai.aspek_4,
                 "desc_4": request.nilai.desc_4
             },
+            "nama_pimpinan": request.nama_pimpinan,
+            "nip_pimpinan": request.nip_pimpinan,
             "total_nilai": total,
             "rata_rata": rata_rata
         }
