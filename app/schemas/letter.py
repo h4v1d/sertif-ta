@@ -264,7 +264,11 @@ class SertifikatRequest(BaseModel):
     tanggal_terbit: str = Field(..., description="Tanggal sertifikat diterbitkan (e.g., '31 Desember 2026')", examples=["31 Desember 2026"])
     nilai: NilaiSertifikat = Field(..., description="Data nilai untuk halaman belakang")
     nama_pimpinan: str = Field(..., description="Nama pimpinan perusahaan", examples=["Fatkur Amri"])
-    # nip_pimpinan: str = Field(..., description="NIP pimpinan perusahaan", examples=["19850101 201001 2 005"])
+    nip_pimpinan: str = Field(..., description="NIP pimpinan perusahaan", examples=["19850101 201001 2 005"])
+    jabatan_pimpinan: str = Field(..., description="Jabatan pimpinan perusahaan", examples=["Direktur Utama PT UBIG"])
+    nama_pembimbing: str = Field(..., description="Nama pembimbing perusahaan", examples=["Ahamd Fauzan"])
+    nip_pembimbing: str = Field(..., description="NIP pembimbing perusahaan", examples=["19850101 201001 2 005"])
+    jabatan_pembimbing: str = Field(..., description="Jabatan pembimbing perusahaan", examples=["Pembimbing"])
 
 class StudentPenilaian(BaseModel):
     nama: str = Field(..., description="Nama lengkap siswa", examples=["CHANDA ZULIA LESTARI"])

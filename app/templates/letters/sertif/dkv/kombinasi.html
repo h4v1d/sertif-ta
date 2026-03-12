@@ -76,11 +76,11 @@
         }
 
         .bg-depan {
-            background-image: url('assets/dkv/depan.png');
+            background-image: url('assets/dkv/new_depan_animasi.png');
         }
 
         .bg-belakang {
-            background-image: url('assets/dkv/belakang.png');
+            background-image: url('assets/dkv/new_belakang_animasi.png');
         }
 
         /* Set absolute positioning to follow mm sizing for exact A4 matching, or keep percentages as provided */
@@ -263,15 +263,27 @@
             font-size: 1.2em;
         }
 
-        .nama-pimpinan-belakang {
+        .jabatan_pimpinan {
+            top: 79%;
+            left: 21.3%;
+            font-size: 1.2em;
+        }
+
+        .nama-pembimbing {
             top: 87%;
             left: 64%;
             font-size: 1.2em;
         }
 
-        .nip-pimpinan-belakang {
+        .nip-pembimbing {
             top: 90%;
-            right: 17.5%;
+            left: 64%;
+            font-size: 1.2em;
+        }
+
+        .jabatan-pembimbing {
+            top: 75%;
+            left: 64%;
             font-size: 1.2em;
         }
     </style>
@@ -292,8 +304,9 @@
             </div>
 
             <div class="text tanggal-value font-normal">{{ tanggal_terbit }}</div>
+            <div class="text jabatan_pimpinan font-normal">{{ jabatan_pimpinan }}</div>
             <div class="text nama-pimpinan-depan font-normal">{{ nama_pimpinan }}</div>
-            <!-- <div class="text nip-pimpinan-depan font-normal">NIP. {{ nip_pimpinan }}</div> -->
+            <div class="text nip-pimpinan-depan font-normal">NIP. {{ nip_pimpinan }}</div>
         </div>
     </div>
 
@@ -316,8 +329,9 @@
             <div class="text nilai nilai-4 font-normal">{{ nilai.aspek_4 }}</div>
             <div class="text nilai nilai-total font-normal">{{ total_nilai }}</div>
             <div class="text nilai nilai-akhir font-bold">{{ rata_rata }}</div>
-            <div class="text nama-pimpinan-belakang font-normal">{{ nama_pimpinan }}</div>
-            <!-- <div class="text nip-pimpinan-belakang font-normal">NIP. {{ nip_pimpinan }}</div> -->
+            <div class="text jabatan-pembimbing font-normal">{{ jabatan_pembimbing }}</div>
+            <div class="text nama-pembimbing font-normal">{{ nama_pembimbing }}</div>
+            <div class="text nip-pembimbing font-normal">NIP. {{ nip_pembimbing }}</div>
         </div>
     </div>
 
