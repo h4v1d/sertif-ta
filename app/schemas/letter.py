@@ -264,7 +264,11 @@ class SertifikatRequest(BaseModel):
     tanggal_terbit: str = Field(..., description="Tanggal sertifikat diterbitkan (e.g., '31 Desember 2026')", examples=["31 Desember 2026"])
     nilai: NilaiSertifikat = Field(..., description="Data nilai untuk halaman belakang")
     nama_pimpinan: str = Field(..., description="Nama pimpinan perusahaan", examples=["Fatkur Amri"])
-    # nip_pimpinan: str = Field(..., description="NIP pimpinan perusahaan", examples=["19850101 201001 2 005"])
+    nip_pimpinan: str = Field(..., description="NIP pimpinan perusahaan", examples=["19850101 201001 2 005"])
+    jabatan_pimpinan: str = Field(..., description="Jabatan pimpinan perusahaan", examples=["Direktur Utama PT UBIG"])
+    nama_pembimbing: str = Field(..., description="Nama pembimbing perusahaan", examples=["Ahamd Fauzan"])
+    nip_pembimbing: str = Field(..., description="NIP pembimbing perusahaan", examples=["19850101 201001 2 005"])
+    jabatan_pembimbing: str = Field(..., description="Jabatan pembimbing perusahaan", examples=["Pembimbing"])
 
 class StudentPenilaian(BaseModel):
     nama: str = Field(..., description="Nama lengkap siswa", examples=["CHANDA ZULIA LESTARI"])
@@ -275,7 +279,11 @@ class StudentPenilaian(BaseModel):
     tanggal_mulai: str = Field(..., description="Tanggal Mulai PKL", examples=["1 Juli 2024"])
     tanggal_selesai: str = Field(..., description="Tanggal Selesai PKL", examples=["31 Desember 2024"])
     nama_instruktur: str = Field(..., description="Nama Instruktur Dunia Kerja", examples=["Bapak / Ibu Pimpinan"])
-    nama_pembimbing: str = Field(..., description="Nama Guru Pembimbing", examples=["Guru Mapel PKL"])
+    jabatan_instruktur: str = Field(..., description="Jabatan Instruktur Dunia Kerja", examples=["Industrial Engineer"])
+    nip_instruktur: str = Field(..., description="NIP Instruktur Dunia Kerja", examples=["19850101 201001 2 005"])
+    nama_pembimbing: str = Field(..., description="Nama Guru Pembimbing", examples=["Aldian S.Pd."])
+    jabatan_pembimbing: str = Field(..., description="Jabatan Guru Pembimbing", examples=["Guru Mapel PKL"])
+    nip_pembimbing: str = Field(..., description="NIP Guru Pembimbing", examples=["19850101 201001 2 005"])
 
 class NilaiPenilaianDetail(BaseModel):
     skor_1: float = Field(..., description="Skor untuk Aspek 1", examples=[90.0])

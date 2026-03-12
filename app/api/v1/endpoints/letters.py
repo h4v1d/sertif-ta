@@ -191,6 +191,11 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
     - `tanggal_terbit`: Date of issue
     - `nilai`: 4 specific score aspects
     - `nama_pimpinan`: Name of the industry leader
+    - `nip_pimpinan`: NIP of the industry leader
+    - `jabatan_pimpinan`: Job title of the industry leader
+    - `nama_pembimbing`: Name of the school teacher
+    - `nip_pembimbing`: NIP of the school teacher
+    - `jabatan_pembimbing`: Job title of the school teacher
     """
     try:
         logger.info(f"Generating Sertifikat PKL ({jurusan}) for {request.siswa.nama}")
@@ -229,7 +234,11 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
                 "desc_4": request.nilai.desc_4
             },
             "nama_pimpinan": request.nama_pimpinan,
-            # "nip_pimpinan": request.nip_pimpinan,
+            "nip_pimpinan": request.nip_pimpinan,
+            "jabatan_pimpinan": request.jabatan_pimpinan,
+            "nama_pembimbing": request.nama_pembimbing,
+            "nip_pembimbing": request.nip_pembimbing,
+            "jabatan_pembimbing": request.jabatan_pembimbing,
             "total_nilai": total,
             "rata_rata": rata_rata
         }
@@ -307,7 +316,11 @@ async def generate_penilaian(request: PenilaianRequest):
                 "tanggal_mulai": request.siswa.tanggal_mulai,
                 "tanggal_selesai": request.siswa.tanggal_selesai,
                 "nama_instruktur": request.siswa.nama_instruktur,
-                "nama_pembimbing": request.siswa.nama_pembimbing
+                "jabatan_instruktur": request.siswa.jabatan_instruktur,
+                "nip_instruktur": request.siswa.nip_instruktur,
+                "nama_pembimbing": request.siswa.nama_pembimbing,
+                "jabatan_pembimbing": request.siswa.jabatan_pembimbing,
+                "nip_pembimbing": request.siswa.nip_pembimbing
             },
             "nilai": {
                 "skor_1": request.nilai.skor_1,

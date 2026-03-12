@@ -228,10 +228,19 @@
 
         .sig-left {
             text-align: left;
+            width: 50%;
         }
 
         .sig-right {
-            text-align: right;
+            text-align: left;
+            width: 50%;
+        }
+
+        .sig-right-content {
+            display: inline-block;
+            text-align: left;
+            margin-left: 50%;
+            /* Adjust this to move the entire block left/right */
         }
 
         .sig-title,
@@ -241,11 +250,25 @@
             display: block;
         }
 
-        .sig-dots {
+        .sig-nama-pembimbing,
+        .sig-nama-instruktur {
             margin-top: 60px;
             font-size: 11pt;
             display: block;
+            font-weight: bold;
+        }
+
+        .sig-dots {
+            font-size: 11pt;
+            display: block;
             letter-spacing: 1px;
+            line-height: 0.8;
+        }
+
+        .sig-nip-pembimbing,
+        .sig-nip-instruktur {
+            font-size: 11pt;
+            display: block;
         }
     </style>
 </head>
@@ -473,13 +496,21 @@
             <tr>
                 <td class="sig-left" style="width: 50%;">
                     <span class="sig-location">&nbsp;</span><br />
-                    <span class="sig-title">Guru Mapel PKL,</span>
+                    <span class="sig-title">{{ content.siswa.jabatan_pembimbing }}</span>
+                    <span class="sig-nama-pembimbing">{{ content.siswa.nama_pembimbing }}</span>
                     <span class="sig-dots">………………………</span>
+                    <span class="sig-nip-pembimbing">NIP. {% if content.siswa.nip_pembimbing %}{{
+                        content.siswa.nip_pembimbing }}{% else %}-{% endif %}</span>
                 </td>
-                <td class="sig-right" style="width: 50%;">
-                    <span class="sig-location">{{ content.tempat_tanggal }}</span><br />
-                    <span class="sig-title">Instruktur Dunia Kerja,</span>
-                    <span class="sig-dots">………………………………</span>
+                <td class="sig-right">
+                    <div class="sig-right-content">
+                        <span class="sig-location">{{ content.tempat_tanggal }}</span><br />
+                        <span class="sig-title">{{ content.siswa.jabatan_instruktur }}</span>
+                        <span class="sig-nama-instruktur">{{ content.siswa.nama_instruktur }}</span>
+                        <span class="sig-dots">………………………………</span>
+                        <span class="sig-nip-instruktur">NIP. {% if content.siswa.nip_instruktur %}{{
+                            content.siswa.nip_instruktur }}{% else %}-{% endif %}</span>
+                    </div>
                 </td>
             </tr>
         </table>
