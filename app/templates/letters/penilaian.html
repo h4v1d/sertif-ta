@@ -1,521 +1,550 @@
 <!doctype html>
 <html lang="id">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Penilaian PKL</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: "Times New Roman", Times, serif;
-            font-size: 12pt;
-            background: white;
-            padding: 0;
-        }
+      body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        background: white;
+        padding: 0;
+      }
 
-        @page {
-            size: A4;
-            margin: 15mm 20mm 15mm 20mm;
-        }
+      @page {
+        size: A4;
+        margin: 15mm 20mm 15mm 20mm;
+      }
 
-        .page {
-            background: white;
-            position: relative;
-            page-break-after: always;
-        }
+      .page {
+        background: white;
+        position: relative;
+        page-break-after: always;
+      }
 
-        .page:last-child {
-            page-break-after: auto;
-        }
+      .page:last-child {
+        page-break-after: auto;
+      }
 
-        /* Header */
-        .header-table {
-            width: 100%;
-            border-bottom: 3px solid black;
-            margin-bottom: 10px;
-            padding-bottom: 8px;
-            border-collapse: collapse;
-        }
+      /* Header */
+      .header-table {
+        width: 100%;
+        border-bottom: 3px solid black;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+        border-collapse: collapse;
+      }
 
-        .header-table td {
-            vertical-align: middle;
-            border: none !important;
-        }
+      .header-table td {
+        vertical-align: middle;
+        border: none !important;
+      }
 
-        .header-logo-td {
-            width: 120px;
-            text-align: center;
-        }
+      .header-logo-td {
+        width: 120px;
+        text-align: center;
+      }
 
-        .header-logo-td img {
-            width: 100px;
-            height: auto;
-            max-height: 100px;
-            object-fit: contain;
-        }
+      .header-logo-td img {
+        width: 100px;
+        height: auto;
+        max-height: 100px;
+        object-fit: contain;
+      }
 
-        .header-text-td {
-            text-align: center;
-            line-height: 1.3;
-        }
+      .header-text-td {
+        text-align: center;
+        line-height: 1.3;
+      }
 
-        .header-text .prov {
-            font-size: 11pt;
-            font-weight: normal;
-        }
+      .header-text .prov {
+        font-size: 11pt;
+        font-weight: normal;
+      }
 
-        .header-text .dinas {
-            font-size: 11pt;
-            font-weight: normal;
-        }
+      .header-text .dinas {
+        font-size: 11pt;
+        font-weight: normal;
+      }
 
-        .header-text .school-name {
-            font-size: 16pt;
-            font-weight: bold;
-        }
+      .header-text .school-name {
+        font-size: 16pt;
+        font-weight: bold;
+      }
 
-        .header-text .address {
-            font-size: 9pt;
-            font-weight: normal;
-        }
+      .header-text .address {
+        font-size: 9pt;
+        font-weight: normal;
+      }
 
-        /* Title block */
-        .title-block {
-            text-align: center;
-            margin: 16px 0 14px 0;
-        }
+      /* Title block */
+      .title-block {
+        text-align: center;
+        margin: 16px 0 14px 0;
+      }
 
-        .title-block p {
-            font-size: 12pt;
-            font-weight: bold;
-            line-height: 1.5;
-        }
+      .title-block p {
+        font-size: 12pt;
+        font-weight: bold;
+        line-height: 1.5;
+      }
 
-        /* Identity fields */
-        .identity-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 14px;
-        }
+      /* Identity fields */
+      .identity-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 14px;
+      }
 
-        .identity-table td {
-            padding: 2px 0;
-            font-size: 11pt;
-            vertical-align: top;
-        }
+      .identity-table td {
+        padding: 2px 0;
+        font-size: 11pt;
+        vertical-align: top;
+      }
 
-        .identity-table .label {
-            width: 45mm;
-            white-space: nowrap;
-        }
+      .identity-table .label {
+        width: 45mm;
+        white-space: nowrap;
+      }
 
-        .identity-table .colon {
-            width: 6mm;
-            text-align: center;
-            border: none !important;
-        }
+      .identity-table .colon {
+        width: 6mm;
+        text-align: center;
+        border: none !important;
+      }
 
-        .identity-table .value {
-            width: auto;
-            border-bottom: none !important;
-            border: none;
-            min-width: 80mm;
-        }
+      .identity-table .value {
+        width: auto;
+        border-bottom: none !important;
+        border: none;
+        min-width: 80mm;
+      }
 
-        .tanggal-row td {
-            padding: 2px 0;
-        }
+      .tanggal-row td {
+        padding: 2px 0;
+      }
 
-        /* Score table */
-        .score-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 0;
-        }
+      /* Score table */
+      .score-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 0;
+      }
 
-        .score-table th,
-        .score-table td {
-            border: 1px solid black;
-            padding: 6px 8px;
-            vertical-align: middle;
-            font-size: 11pt;
-        }
+      .score-table th,
+      .score-table td {
+        border: 1px solid black;
+        padding: 6px 8px;
+        vertical-align: middle;
+        font-size: 11pt;
+      }
 
-        .score-table thead th {
-            text-align: center;
-            font-weight: bold;
-            background: white;
-        }
+      .score-table thead th {
+        text-align: center;
+        font-weight: bold;
+        background: white;
+      }
 
-        .score-table th.col-tp {
-            width: 60%;
-        }
+      .score-table th.col-tp {
+        width: 60%;
+      }
 
-        .score-table th.col-skor {
-            width: 15%;
-            text-align: center;
-        }
+      .score-table th.col-skor {
+        width: 15%;
+        text-align: center;
+      }
 
-        .score-table th.col-desk {
-            width: 25%;
-            text-align: center;
-        }
+      .score-table th.col-desk {
+        width: 25%;
+        text-align: center;
+      }
 
-        .score-table tr.total-row td,
-        .score-table tr.nilai-row td {
-            font-weight: bold;
-        }
+      .score-table tr.total-row td,
+      .score-table tr.nilai-row td {
+        font-weight: bold;
+      }
 
-        .score-table tr.catatan-row td {
-            font-style: italic;
-            font-weight: normal;
-        }
+      .score-table tr.catatan-row td {
+        font-style: italic;
+        font-weight: normal;
+      }
 
-        /* Page 2 */
-        .kehadiran-table {
-            width: 80mm;
-            border-collapse: collapse;
-            margin-bottom: 30px;
-        }
+      /* Page 2 */
+      .kehadiran-table {
+        width: 80mm;
+        border-collapse: collapse;
+        margin-bottom: 30px;
+      }
 
-        .kehadiran-table th {
-            border: 1px solid black;
-            padding: 5px 10px;
-            text-align: center;
-            font-size: 11pt;
-            font-weight: bold;
-            background: white;
-        }
+      .kehadiran-table th {
+        border: 1px solid black;
+        padding: 5px 10px;
+        text-align: center;
+        font-size: 11pt;
+        font-weight: bold;
+        background: white;
+      }
 
-        .kehadiran-table td {
-            border: 1px solid black;
-            padding: 5px 10px;
-            font-size: 11pt;
-        }
+      .kehadiran-table td {
+        border: 1px solid black;
+        padding: 5px 10px;
+        font-size: 11pt;
+      }
 
-        .kehadiran-table td.k-label {
-            width: 40mm;
-        }
+      .kehadiran-table td.k-label {
+        width: 40mm;
+      }
 
-        .kehadiran-table td.k-colon {
-            width: 6mm;
-            text-align: center;
-        }
+      .kehadiran-table td.k-colon {
+        width: 6mm;
+        text-align: center;
+      }
 
-        .kehadiran-table td.k-val {
-            width: 20mm;
-            text-align: right;
-        }
+      .kehadiran-table td.k-val {
+        width: 20mm;
+        text-align: right;
+      }
 
-        /* Signature area */
-        .signature-table {
-            width: 100%;
-            margin-top: 40px;
-            border-collapse: collapse;
-        }
+      /* Signature area */
+      .signature-table {
+        width: 100%;
+        margin-top: 40px;
+        border-collapse: collapse;
+      }
 
-        .signature-table td {
-            vertical-align: top;
-            border: none !important;
-            padding: 0;
-        }
+      .signature-table td {
+        vertical-align: top;
+        border: none !important;
+        padding: 0;
+      }
 
-        .sig-left {
-            text-align: left;
-            width: 50%;
-        }
+      .sig-left {
+        text-align: left;
+        width: 50%;
+      }
 
-        .sig-right {
-            text-align: left;
-            width: 50%;
-        }
+      .sig-right {
+        text-align: left;
+        width: 50%;
+      }
 
-        .sig-right-content {
-            display: inline-block;
-            text-align: left;
-            margin-left: 50%;
-            /* Adjust this to move the entire block left/right */
-        }
+      .sig-right-content {
+        display: inline-block;
+        text-align: left;
+        margin-left: 50%;
+        /* Adjust this to move the entire block left/right */
+      }
 
-        .sig-title,
-        .sig-location {
-            font-size: 11pt;
-            margin-bottom: 0;
-            display: block;
-        }
+      .sig-title,
+      .sig-location {
+        font-size: 11pt;
+        margin-bottom: 0;
+        display: block;
+      }
 
-        .sig-nama-pembimbing,
-        .sig-nama-instruktur {
-            margin-top: 60px;
-            font-size: 11pt;
-            display: block;
-            font-weight: bold;
-        }
+      .sig-nama-pembimbing,
+      .sig-nama-instruktur {
+        margin-top: 60px;
+        font-size: 11pt;
+        display: block;
+        font-weight: bold;
+      }
 
-        .sig-dots {
-            font-size: 11pt;
-            display: block;
-            letter-spacing: 1px;
-            line-height: 0.8;
-        }
+      .sig-dots {
+        font-size: 11pt;
+        display: block;
+        letter-spacing: 1px;
+        line-height: 0.8;
+      }
 
-        .sig-nip-pembimbing,
-        .sig-nip-instruktur {
-            font-size: 11pt;
-            display: block;
-        }
+      .sig-nip-pembimbing,
+      .sig-nip-instruktur {
+        font-size: 11pt;
+        display: block;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- PAGE 1 -->
     <div class="page">
-        <!-- Header -->
-        <table class="header-table">
-            <tr>
-                <td class="header-logo-td">
-                    {% if school_info.logo_url %}
-                    <img src="{{ school_info.logo_url }}" alt="Logo" />
-                    {% else %}
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
-                        alt="Logo Jawa Timur" />
-                    {% endif %}
-                </td>
-                <td class="header-text-td">
-                    <div class="header-text">
-                        <div class="prov">PEMERINTAH PROVINSI {% if school_info.provinsi %}{{ school_info.provinsi|upper
-                            }}{%
-                            else %}JAWA TIMUR{% endif %}</div>
-                        <div class="dinas">DINAS PENDIDIKAN</div>
-                        <div class="school-name">{{ school_info.nama_sekolah }}</div>
-                        <div class="address">
-                            {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{ school_info.kelurahan }}{%
-                            endif
-                            %}{% if school_info.kecamatan %}, {{ school_info.kecamatan }}{% endif %}{% if
-                            school_info.kab_kota
-                            %}, {{ school_info.kab_kota }}{% endif %}{% if school_info.provinsi %}, {{
-                            school_info.provinsi }}{%
-                            endif %}{% if school_info.kode_pos %}, {{ school_info.kode_pos }}{% endif %}
-                        </div>
-                        <div class="address">Telepon {% if school_info.telepon %}{{ school_info.telepon }}{% else
-                            %}(0341)
-                            4345127{% endif %}</div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+      <!-- Header -->
+      <table class="header-table">
+        <tr>
+          <td class="header-logo-td">
+            {% if school_info.logo_url %}
+            <img src="{{ school_info.logo_url }}" alt="Logo" />
+            {% else %}
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
+              alt="Logo Jawa Timur"
+            />
+            {% endif %}
+          </td>
+          <td class="header-text-td">
+            <div class="header-text">
+              <div class="prov">
+                PEMERINTAH PROVINSI {% if school_info.provinsi %}{{
+                school_info.provinsi|upper }}{% else %}JAWA TIMUR{% endif %}
+              </div>
+              <div class="dinas">DINAS PENDIDIKAN</div>
+              <div class="school-name">{{ school_info.nama_sekolah }}</div>
+              <div class="address">
+                {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{
+                school_info.kelurahan }}{% endif %}{% if school_info.kecamatan
+                %}, {{ school_info.kecamatan }}{% endif %}{% if
+                school_info.kab_kota %}, {{ school_info.kab_kota }}{% endif %}{%
+                if school_info.provinsi %}, {{ school_info.provinsi }}{% endif
+                %}{% if school_info.kode_pos %}, {{ school_info.kode_pos }}{%
+                endif %}
+              </div>
+              <div class="address">
+                Telepon {% if school_info.telepon %}{{ school_info.telepon }}{%
+                else %}(0341) 4345127{% endif %}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-        <!-- Title -->
-        <div class="title-block">
-            <p>DAFTAR NILAI PESERTA DIDIK</p>
-            <p>MATA PELAJARAN PKL</p>
-            <p>{{ school_info.nama_sekolah }}</p>
-            <p>TAHUN AJARAN 2025/2026</p>
-        </div>
+      <!-- Title -->
+      <div class="title-block">
+        <p>DAFTAR NILAI PESERTA DIDIK</p>
+        <p>MATA PELAJARAN PKL</p>
+        <p>{{ school_info.nama_sekolah }}</p>
+        <p>TAHUN AJARAN 2025/2026</p>
+      </div>
 
-        <!-- Identity -->
-        <table class="identity-table">
-            <tr>
-                <td class="label">Nama Peserta Didik</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.nama }}</td>
-            </tr>
-            <tr>
-                <td class="label">NISN</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.nisn }}</td>
-            </tr>
-            <tr>
-                <td class="label">Kelas</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.kelas }}</td>
-            </tr>
-            <tr>
-                <td class="label">Konsentrasi Keahlian</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.konsentrasi_keahlian }}</td>
-            </tr>
-            <tr>
-                <td class="label">Tempat PKL</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.tempat_pkl }}</td>
-            </tr>
-            <tr class="tanggal-row">
-                <td class="label">Tanggal PKL</td>
-                <td class="colon">:</td>
-                <td>
-                    <span style="display:inline-block; width:150px;">Mulai: <b
-                            style="font-weight:normal; border-bottom:1px solid black;">{{ content.siswa.tanggal_mulai
-                            }}</b></span>
-                    <span>Selesai: <b style="font-weight:normal; border-bottom:1px solid black;">{{
-                            content.siswa.tanggal_selesai }}</b></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="label">Nama Instruktur</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.nama_instruktur }}</td>
-            </tr>
-            <tr>
-                <td class="label">Nama Pembimbing</td>
-                <td class="colon">:</td>
-                <td class="value">{{ content.siswa.nama_pembimbing }}</td>
-            </tr>
-        </table>
+      <!-- Identity -->
+      <table class="identity-table">
+        <tr>
+          <td class="label">Nama Peserta Didik</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.nama }}</td>
+        </tr>
+        <tr>
+          <td class="label">NISN</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.nisn }}</td>
+        </tr>
+        <tr>
+          <td class="label">Kelas</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.kelas }}</td>
+        </tr>
+        <tr>
+          <td class="label">Konsentrasi Keahlian</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.konsentrasi_keahlian }}</td>
+        </tr>
+        <tr>
+          <td class="label">Tempat PKL</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.tempat_pkl }}</td>
+        </tr>
+        <tr class="tanggal-row">
+          <td class="label">Tanggal PKL</td>
+          <td class="colon">:</td>
+          <td>
+            <span style="display: inline-block; width: 150px"
+              >Mulai:
+              <b style="font-weight: normal; border-bottom: 1px solid black"
+                >{{ content.siswa.tanggal_mulai }}</b
+              ></span
+            >
+            <span
+              >Selesai:
+              <b style="font-weight: normal; border-bottom: 1px solid black"
+                >{{ content.siswa.tanggal_selesai }}</b
+              ></span
+            >
+          </td>
+        </tr>
+        <tr>
+          <td class="label">Nama Instruktur</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.nama_instruktur }}</td>
+        </tr>
+        <tr>
+          <td class="label">Nama Pembimbing</td>
+          <td class="colon">:</td>
+          <td class="value">{{ content.siswa.nama_pembimbing }}</td>
+        </tr>
+      </table>
 
-        <!-- Score Table -->
-        <table class="score-table">
-            <thead>
-                <tr>
-                    <th class="col-tp">Tujuan Pembelajaran</th>
-                    <th class="col-skor">Skor</th>
-                    <th class="col-desk">Deskripsi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        1. &nbsp;Menerapkan <em>soft skill</em> yang dibutuhkan di dunia kerja (tempat PKL).
-                    </td>
-                    <td style="text-align:center;">{{ content.nilai.skor_1 }}</td>
-                    <td style="text-align:center;">{{ content.nilai.desc_1 }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        2. &nbsp;Menerapkan norma, Prosedur Operasional Standar (POS), serta Kesehatan, Keselamatan
-                        Kerja, dan Lingkungan Hidup (K3LH) yang ada di dunia kerja (tempat PKL).
-                    </td>
-                    <td style="text-align:center;">{{ content.nilai.skor_2 }}</td>
-                    <td style="text-align:center;">{{ content.nilai.desc_2 }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        3. &nbsp;Menerapkan kompetensi teknis yang sudah dipelajari di sekolah dan/atau baru dipelajari
-                        di dunia kerja (tempat PKL).
-                    </td>
-                    <td style="text-align:center;">{{ content.nilai.skor_3 }}</td>
-                    <td style="text-align:center;">{{ content.nilai.desc_3 }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        4. &nbsp;Memahami alur bisnis dunia kerja tempat PKL dan wawasan wirausaha.
-                    </td>
-                    <td style="text-align:center;">{{ content.nilai.skor_4 }}</td>
-                    <td style="text-align:center;">{{ content.nilai.desc_4 }}</td>
-                </tr>
-                <tr class="total-row">
-                    <td><strong>Total Skor</strong></td>
-                    <td style="text-align:center;">{{ content.total_skor }}</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr class="nilai-row">
-                    <td><strong>Nilai Akhir (rata-rata skor)</strong></td>
-                    <td style="text-align:center;">{{ content.rata_rata }}</td>
-                    <td>&nbsp;</td>
-                </tr>
-                <tr class="catatan-row">
-                    <td colspan="3">
-                        Catatan: Peserta didik telah memiliki <em>soft skill</em> dan
-                        <em>hard skill</em> yang dibutuhkan oleh dunia kerja.
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+      <!-- Score Table -->
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th class="col-tp">Tujuan Pembelajaran</th>
+            <th class="col-skor">Skor</th>
+            <th class="col-desk">Deskripsi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              1. &nbsp;Menerapkan <em>soft skill</em> yang dibutuhkan di dunia
+              kerja (tempat PKL).
+            </td>
+            <td style="text-align: center">{{ content.nilai.skor_1 }}</td>
+            <td style="text-align: center">{{ content.nilai.desc_1 }}</td>
+          </tr>
+          <tr>
+            <td>
+              2. &nbsp;Menerapkan norma, Prosedur Operasional Standar (POS),
+              serta Kesehatan, Keselamatan Kerja, dan Lingkungan Hidup (K3LH)
+              yang ada di dunia kerja (tempat PKL).
+            </td>
+            <td style="text-align: center">{{ content.nilai.skor_2 }}</td>
+            <td style="text-align: center">{{ content.nilai.desc_2 }}</td>
+          </tr>
+          <tr>
+            <td>
+              3. &nbsp;Menerapkan kompetensi teknis yang sudah dipelajari di
+              sekolah dan/atau baru dipelajari di dunia kerja (tempat PKL).
+            </td>
+            <td style="text-align: center">{{ content.nilai.skor_3 }}</td>
+            <td style="text-align: center">{{ content.nilai.desc_3 }}</td>
+          </tr>
+          <tr>
+            <td>
+              4. &nbsp;Memahami alur bisnis dunia kerja tempat PKL dan wawasan
+              wirausaha.
+            </td>
+            <td style="text-align: center">{{ content.nilai.skor_4 }}</td>
+            <td style="text-align: center">{{ content.nilai.desc_4 }}</td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>Total Skor</strong></td>
+            <td style="text-align: center">{{ content.total_skor }}</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="nilai-row">
+            <td><strong>Nilai Akhir (rata-rata skor)</strong></td>
+            <td style="text-align: center">{{ content.rata_rata }}</td>
+            <td>&nbsp;</td>
+          </tr>
+          <tr class="catatan-row">
+            <td colspan="3">
+              Catatan: Peserta didik telah memiliki <em>soft skill</em> dan
+              <em>hard skill</em> yang dibutuhkan oleh dunia kerja.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="page">
-        <!-- Header -->
-        <table class="header-table">
-            <tr>
-                <td class="header-logo-td">
-                    {% if school_info.logo_url %}
-                    <img src="{{ school_info.logo_url }}" alt="Logo" />
-                    {% else %}
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
-                        alt="Logo Jawa Timur" />
-                    {% endif %}
-                </td>
-                <td class="header-text-td">
-                    <div class="header-text">
-                        <div class="prov">PEMERINTAH PROVINSI {% if school_info.provinsi %}{{ school_info.provinsi|upper
-                            }}{%
-                            else %}JAWA TIMUR{% endif %}</div>
-                        <div class="dinas">DINAS PENDIDIKAN</div>
-                        <div class="school-name">{{ school_info.nama_sekolah }}</div>
-                        <div class="address">
-                            {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{ school_info.kelurahan }}{%
-                            endif
-                            %}{% if school_info.kecamatan %}, {{ school_info.kecamatan }}{% endif %}{% if
-                            school_info.kab_kota
-                            %}, {{ school_info.kab_kota }}{% endif %}{% if school_info.provinsi %}, {{
-                            school_info.provinsi }}{%
-                            endif %}{% if school_info.kode_pos %}, {{ school_info.kode_pos }}{% endif %}
-                        </div>
-                        <div class="address">Telepon {% if school_info.telepon %}{{ school_info.telepon }}{% else
-                            %}(0341)
-                            4345127{% endif %}</div>
-                    </div>
-                </td>
-            </tr>
-        </table>
+      <!-- Header -->
+      <table class="header-table">
+        <tr>
+          <td class="header-logo-td">
+            {% if school_info.logo_url %}
+            <img src="{{ school_info.logo_url }}" alt="Logo" />
+            {% else %}
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/7/74/Coat_of_arms_of_East_Java.svg"
+              alt="Logo Jawa Timur"
+            />
+            {% endif %}
+          </td>
+          <td class="header-text-td">
+            <div class="header-text">
+              <div class="prov">
+                PEMERINTAH PROVINSI {% if school_info.provinsi %}{{
+                school_info.provinsi|upper }}{% else %}JAWA TIMUR{% endif %}
+              </div>
+              <div class="dinas">DINAS PENDIDIKAN</div>
+              <div class="school-name">{{ school_info.nama_sekolah }}</div>
+              <div class="address">
+                {{ school_info.alamat_jalan }}{% if school_info.kelurahan %}, {{
+                school_info.kelurahan }}{% endif %}{% if school_info.kecamatan
+                %}, {{ school_info.kecamatan }}{% endif %}{% if
+                school_info.kab_kota %}, {{ school_info.kab_kota }}{% endif %}{%
+                if school_info.provinsi %}, {{ school_info.provinsi }}{% endif
+                %}{% if school_info.kode_pos %}, {{ school_info.kode_pos }}{%
+                endif %}
+              </div>
+              <div class="address">
+                Telepon {% if school_info.telepon %}{{ school_info.telepon }}{%
+                else %}(0341) 4345127{% endif %}
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
 
-        <!-- Kehadiran Table -->
-        <br />
-        <table class="kehadiran-table">
-            <thead>
-                <tr>
-                    <th colspan="3">Kehadiran</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="k-label">Sakit</td>
-                    <td class="k-colon">:</td>
-                    <td class="k-val">{{ content.sakit }} Hari</td>
-                </tr>
-                <tr>
-                    <td class="k-label">Izin</td>
-                    <td class="k-colon">:</td>
-                    <td class="k-val">{{ content.izin }} Hari</td>
-                </tr>
-                <tr>
-                    <td class="k-label">Tanpa Keterangan</td>
-                    <td class="k-colon">:</td>
-                    <td class="k-val">{{ content.alpa }} Hari</td>
-                </tr>
-            </tbody>
-        </table>
+      <!-- Kehadiran Table -->
+      <br />
+      <table class="kehadiran-table">
+        <thead>
+          <tr>
+            <th colspan="3">Kehadiran</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="k-label">Sakit</td>
+            <td class="k-colon">:</td>
+            <td class="k-val">{{ content.sakit }} Hari</td>
+          </tr>
+          <tr>
+            <td class="k-label">Izin</td>
+            <td class="k-colon">:</td>
+            <td class="k-val">{{ content.izin }} Hari</td>
+          </tr>
+          <tr>
+            <td class="k-label">Tanpa Keterangan</td>
+            <td class="k-colon">:</td>
+            <td class="k-val">{{ content.alpa }} Hari</td>
+          </tr>
+        </tbody>
+      </table>
 
-        <!-- Signature -->
-        <table class="signature-table">
-            <tr>
-                <td class="sig-left" style="width: 50%;">
-                    <span class="sig-location">&nbsp;</span><br />
-                    <span class="sig-title">{{ content.siswa.jabatan_pembimbing }}</span>
-                    <span class="sig-nama-pembimbing">{{ content.siswa.nama_pembimbing }}</span>
-                    <span class="sig-dots">………………………</span>
-                    <span class="sig-nip-pembimbing">NIP. {% if content.siswa.nip_pembimbing %}{{
-                        content.siswa.nip_pembimbing }}{% else %}-{% endif %}</span>
-                </td>
-                <td class="sig-right">
-                    <div class="sig-right-content">
-                        <span class="sig-location">{{ content.tempat_tanggal }}</span><br />
-                        <span class="sig-title">{{ content.siswa.jabatan_instruktur }}</span>
-                        <span class="sig-nama-instruktur">{{ content.siswa.nama_instruktur }}</span>
-                        <span class="sig-dots">………………………………</span>
-                        <span class="sig-nip-instruktur">NIP. {% if content.siswa.nip_instruktur %}{{
-                            content.siswa.nip_instruktur }}{% else %}-{% endif %}</span>
-                    </div>
-                </td>
-            </tr>
-        </table>
+      <!-- Signature -->
+      <table class="signature-table">
+        <tr>
+          <td class="sig-left" style="width: 50%">
+            <span class="sig-location">&nbsp;</span><br />
+            <span class="sig-title"
+              >{{ content.siswa.jabatan_pembimbing }}</span
+            >
+            <span class="sig-nama-pembimbing"
+              >{{ content.siswa.nama_pembimbing }}</span
+            >
+            <span class="sig-dots">………………………</span>
+            <span class="sig-nip-pembimbing"
+              >NIP. {% if content.siswa.nip_pembimbing %}{{
+              content.siswa.nip_pembimbing }}{% else %}-{% endif %}</span
+            >
+          </td>
+          <td class="sig-right">
+            <div class="sig-right-content">
+              <span class="sig-location">{{ content.tempat_tanggal }}</span
+              ><br />
+              <span class="sig-title"
+                >{{ content.siswa.jabatan_instruktur }}</span
+              >
+              <span class="sig-nama-instruktur"
+                >{{ content.siswa.nama_instruktur }}</span
+              >
+              <span class="sig-dots">………………………………</span>
+              <span class="sig-nip-instruktur"
+                >{{ content.jenis_nomor | default('NIP') }}. {% if
+                content.siswa.nip_instruktur %}{{ content.siswa.nip_instruktur
+                }}{% else %}-{% endif %}</span
+              >
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
-
-</body>
-
+  </body>
 </html>

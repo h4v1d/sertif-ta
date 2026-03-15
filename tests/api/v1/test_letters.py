@@ -75,6 +75,50 @@ def sample_lembar_persetujuan_payload():
     }
 
 
+@pytest.fixture
+def sample_penilaian_payload():
+    """Sample payload for penilaian endpoint."""
+    return {
+        "school_info": {
+            "nama_sekolah": "SMK NEGERI 2 SINGOSARI",
+            "alamat_jalan": "Jalan Perusahaan No. 20",
+            "kab_kota": "Kab. Malang",
+            "provinsi": "Jawa Timur",
+            "kode_pos": "65153"
+        },
+        "siswa": {
+            "nama": "CHANDA ZULIA LESTARI",
+            "nisn": "0012345678",
+            "kelas": "XII DKV 1",
+            "konsentrasi_keahlian": "Desain Komunikasi Visual",
+            "tempat_pkl": "PT NAMA STUDIOS INDONESIA",
+            "tanggal_mulai": "1 Juli 2024",
+            "tanggal_selesai": "31 Desember 2024",
+            "nama_instruktur": "Bapak / Ibu Pimpinan",
+            "jabatan_instruktur": "Industrial Engineer",
+            "nip_instruktur": "19850101 201001 2 005",
+            "nama_pembimbing": "Aldian S.Pd.",
+            "jabatan_pembimbing": "Guru Mapel PKL",
+            "nip_pembimbing": "19850101 201001 2 006"
+        },
+        "nilai": {
+            "skor_1": 90,
+            "desc_1": "Sangat Baik",
+            "skor_2": 85,
+            "desc_2": "Baik",
+            "skor_3": 88,
+            "desc_3": "Baik",
+            "skor_4": 92,
+            "desc_4": "Sangat Baik"
+        },
+        "jenis_nomor": "NP",
+        "sakit": 2,
+        "izin": 1,
+        "alpa": 0,
+        "tempat_tanggal": "Singosari, 31 Desember 2024"
+    }
+
+
 class TestHealthEndpoint:
     def test_health_check(self, client):
         response = client.get("/health")
@@ -147,6 +191,17 @@ class TestLembarPersetujuanEndpoint:
         }
         response = client.post("/api/v1/letters/lembar-persetujuan", json=payload)
         assert response.status_code == 422
+
+
+class TestPenilaianEndpoint:
+    def test_penilaian_success(self, client, sample_penilaian_payload):
+        response = client.post("/api/v1/letters/penilaian", json=sample_penilaian_payload)
+        assert response.status_code == 200
+        data = response.json()
+        assert "filename" in data
+        assert "file_url" in data
+        assert "file_size" in data
+        assert data["filename"].endswith(".pdf")
 
 
 class TestDownloadEndpoint:

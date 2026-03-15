@@ -334,6 +334,7 @@ async def generate_penilaian(request: PenilaianRequest):
             },
             "total_skor": total_skor,
             "rata_rata": rata_rata,
+            "jenis_nomor": request.jenis_nomor,
             "sakit": request.sakit,
             "izin": request.izin,
             "alpa": request.alpa,

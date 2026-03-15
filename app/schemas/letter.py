@@ -299,6 +299,7 @@ class PenilaianRequest(BaseModel):
     school_info: SchoolInfo = Field(..., description="Informasi sekolah untuk header")
     siswa: StudentPenilaian = Field(..., description="Data identitas siswa yang dinilai")
     nilai: NilaiPenilaianDetail = Field(..., description="Detail perolehan skor dan deskripsi siswa")
+    jenis_nomor: str = Field("NIP", description="Label jenis nomor identitas untuk penandatangan, misalnya NIP, NP, atau lainnya", examples=["NIP", "NP"])
     sakit: int = Field(0, description="Jumlah hari sakit", examples=[2])
     izin: int = Field(0, description="Jumlah hari izin", examples=[1])
     alpa: int = Field(0, description="Jumlah hari tanpa keterangan (alpa)", examples=[0])
