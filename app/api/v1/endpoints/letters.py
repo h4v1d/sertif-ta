@@ -234,9 +234,11 @@ async def generate_sertifikat(jurusan: str, request: SertifikatRequest):
                 "desc_4": request.nilai.desc_4
             },
             "nama_pimpinan": request.nama_pimpinan,
+            "jenis_nomor_pimpinan": request.jenis_nomor_pimpinan,
             "nip_pimpinan": request.nip_pimpinan,
             "jabatan_pimpinan": request.jabatan_pimpinan,
             "nama_pembimbing": request.nama_pembimbing,
+            "jenis_nomor_pembimbing": request.jenis_nomor_pembimbing,
             "nip_pembimbing": request.nip_pembimbing,
             "jabatan_pembimbing": request.jabatan_pembimbing,
             "total_nilai": total,

@@ -119,6 +119,41 @@ def sample_penilaian_payload():
     }
 
 
+@pytest.fixture
+def sample_sertifikat_payload():
+    """Sample payload for sertifikat endpoint."""
+    return {
+        "nomor_sertifikat": "420/1013/101.6.9.19/2026",
+        "siswa": {
+            "nama": "JULIANA SILVA",
+            "nisn": "0123456789"
+        },
+        "nama_industri": "PT NAMA STUDIOS INDONESIA",
+        "tanggal_mulai": "14 Juli 2026",
+        "tanggal_selesai": "31 Desember 2026",
+        "hasil_pkl": "Amat Baik",
+        "tanggal_terbit": "31 Desember 2026",
+        "nilai": {
+            "aspek_1": 90,
+            "desc_1": "MENERAPKAN SOFT SKILL YANG DIBUTUHKAN DI DUNIA KERJA (TEMPAT PKL).",
+            "aspek_2": 85,
+            "desc_2": "MENERAPKAN NORMA, PROSEDUR OPERASIONAL STANDAR (POS), SERTA KESEHATAN, KESELAMATAN KERJA, DAN LINGKUNGAN HIDUP (K3LH) YANG ADA DI DUNIA KERJA (TEMPAT PKL).",
+            "aspek_3": 88,
+            "desc_3": "MENERAPKAN KOMPETENSI TEKNIS YANG SUDAH DIPELAJARI DI SEKOLAH DAN/ATAU BARU DIPELAJARI DI DUNIA KERJA (TEMPAT PKL).",
+            "aspek_4": 92,
+            "desc_4": "MEMAHAMI ALUR BISNIS DUNIA KERJA TEMPAT PKL DAN WAWASAN WIRAUSAHA."
+        },
+        "nama_pimpinan": "Fatkur Amri",
+        "jenis_nomor_pimpinan": "NP",
+        "nip_pimpinan": "19850101 201001 2 005",
+        "jabatan_pimpinan": "Direktur Utama PT UBIG",
+        "nama_pembimbing": "Ahamd Fauzan",
+        "jenis_nomor_pembimbing": "NIK",
+        "nip_pembimbing": "19850101 201001 2 006",
+        "jabatan_pembimbing": "Pembimbing"
+    }
+
+
 class TestHealthEndpoint:
     def test_health_check(self, client):
         response = client.get("/health")
@@ -196,6 +231,17 @@ class TestLembarPersetujuanEndpoint:
 class TestPenilaianEndpoint:
     def test_penilaian_success(self, client, sample_penilaian_payload):
         response = client.post("/api/v1/letters/penilaian", json=sample_penilaian_payload)
+        assert response.status_code == 200
+        data = response.json()
+        assert "filename" in data
+        assert "file_url" in data
+        assert "file_size" in data
+        assert data["filename"].endswith(".pdf")
+
+
+class TestSertifikatEndpoint:
+    def test_sertifikat_success(self, client, sample_sertifikat_payload):
+        response = client.post("/api/v1/letters/sertifikat/dkv", json=sample_sertifikat_payload)
         assert response.status_code == 200
         data = response.json()
         assert "filename" in data
